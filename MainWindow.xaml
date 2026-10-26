@@ -111,8 +111,8 @@
             </Setter>
         </Style>
 
-        <!-- Кнопки-иконки внизу правой панели -->
-        <Style x:Key="FooterIconButtonStyle" TargetType="Button">
+        <!-- Кнопки-иконки в зелёной нижней панели -->
+        <Style x:Key="GreenBarIconButtonStyle" TargetType="Button">
             <Setter Property="Width" Value="30"/>
             <Setter Property="Height" Value="30"/>
             <Setter Property="Background" Value="Transparent"/>
@@ -126,16 +126,17 @@
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
                         <Border x:Name="FooterButtonBorder"
-                                Background="{TemplateBinding Background}">
+                                Background="{TemplateBinding Background}"
+                                CornerRadius="2">
                             <ContentPresenter HorizontalAlignment="Center"
                                               VerticalAlignment="Center"/>
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
-                                <Setter TargetName="FooterButtonBorder" Property="Background" Value="#0D47A1"/>
+                                <Setter TargetName="FooterButtonBorder" Property="Background" Value="#7CB342"/>
                             </Trigger>
                             <Trigger Property="IsPressed" Value="True">
-                                <Setter TargetName="FooterButtonBorder" Property="Background" Value="#0A3A7F"/>
+                                <Setter TargetName="FooterButtonBorder" Property="Background" Value="#689F38"/>
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
@@ -223,26 +224,28 @@
             </Border>
 
             <!-- ЦЕНТРАЛЬНАЯ ЧАСТЬ -->
-            <Grid Grid.Row="1" Grid.Column="0" Background="#FFFFFF">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="60"/>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
+            <Grid Grid.Row="1" Grid.Column="0" Background="#0E2A45">
+                <!-- Фоновая картинка -->
+                <Image Source="Assets/launcher-background.png"
+                       Stretch="UniformToFill"
+                       RenderOptions.BitmapScalingMode="HighQuality"/>
 
-                <!-- Новостной баннер -->
-                <Border Grid.Row="0" Background="#E8F5E9">
-                    <TextBlock Text="Текст новостного баннера-заглушки"
-                               Foreground="#2E7D32"
-                               FontSize="14"
-                               HorizontalAlignment="Center"
-                               VerticalAlignment="Center"/>
-                </Border>
+                <!-- Белое полотно поверх картинки -->
+                <Border Margin="26"
+                        Background="#FFFFFF"
+                        BorderBrush="#D0D0D0"
+                        BorderThickness="1">
+                    <Border.Effect>
+                        <DropShadowEffect BlurRadius="18"
+                                          ShadowDepth="3"
+                                          Opacity="0.35"
+                                          Color="#000000"/>
+                    </Border.Effect>
 
-                <!-- Лента новостей -->
-                <ScrollViewer Grid.Row="1"
-                              VerticalScrollBarVisibility="Auto"
-                              HorizontalScrollBarVisibility="Disabled">
-                    <StackPanel Margin="20,18,20,18">
+                    <!-- Лента новостей -->
+                    <ScrollViewer VerticalScrollBarVisibility="Auto"
+                                  HorizontalScrollBarVisibility="Disabled">
+                        <StackPanel Margin="22,18,22,18">
 
                         <!-- Новость 1 -->
                         <Grid Margin="0,0,0,6">
@@ -389,16 +392,18 @@
                                    TextWrapping="Wrap"
                                    Margin="0,0,0,2"/>
 
-                    </StackPanel>
-                </ScrollViewer>
+                        </StackPanel>
+                    </ScrollViewer>
+                </Border>
             </Grid>
 
             <!-- НИЖНЯЯ ПАНЕЛЬ -->
-            <Grid Grid.Row="2" Grid.Column="0" Background="#8BC34A">
+            <Grid Grid.Row="2" Grid.ColumnSpan="2" Background="#8BC34A">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="24"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="16"/>
                 </Grid.ColumnDefinitions>
 
                 <!-- Колонка 1: email и запомнить меня -->
@@ -489,13 +494,45 @@
                     </Button>
                 </StackPanel>
 
-                <!-- Колонка 3: пустое место -->
-                <Grid Grid.Column="2"/>
+                <!-- Правая группа: моды, папка игры, настройки -->
+                <StackPanel Grid.Column="2"
+                            Orientation="Horizontal"
+                            VerticalAlignment="Center"
+                            Margin="12,0,0,0">
+                    <Button Style="{StaticResource GreenBarIconButtonStyle}"
+                            ToolTip="Моды">
+                        <Viewbox Width="16" Height="16">
+                            <Canvas Width="18" Height="18">
+                                <Polygon Points="9,1 17,5 9,9 1,5" Fill="#FFFFFF"/>
+                                <Polygon Points="1,5 9,9 9,17 1,13" Fill="#E0F4D8"/>
+                                <Polygon Points="9,9 17,5 17,13 9,17" Fill="#C8E9BD"/>
+                            </Canvas>
+                        </Viewbox>
+                    </Button>
+
+                    <Button Style="{StaticResource GreenBarIconButtonStyle}"
+                            ToolTip="Папка игры">
+                        <TextBlock Text="&#xE8B7;"
+                                   FontFamily="Segoe MDL2 Assets"
+                                   Foreground="#FFFFFF"
+                                   FontSize="16"/>
+                    </Button>
+
+                    <Button Style="{StaticResource GreenBarIconButtonStyle}"
+                            ToolTip="Настройки">
+                        <TextBlock Text="&#xE713;"
+                                   FontFamily="Segoe MDL2 Assets"
+                                   Foreground="#FFFFFF"
+                                   FontSize="16"/>
+                    </Button>
+                </StackPanel>
+
+                <!-- Правый отступ -->
+                <Grid Grid.Column="3"/>
             </Grid>
 
             <!-- ПРАВАЯ ПАНЕЛЬ -->
             <Grid Grid.Row="1"
-                  Grid.RowSpan="2"
                   Grid.Column="1">
                 <Grid.Background>
                     <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
@@ -666,108 +703,57 @@
                             </StackPanel>
                         </Button>
 
-                        <!-- Промо-баннеры -->
-                        <Border Height="100"
-                                Margin="0,8,0,0">
-                            <Border.Background>
-                                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                                    <GradientStop Color="#1565C0" Offset="0"/>
-                                    <GradientStop Color="#0D47A1" Offset="1"/>
-                                </LinearGradientBrush>
-                            </Border.Background>
-
-                            <Grid Margin="10,8">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="48"/>
-                                    <ColumnDefinition Width="*"/>
-                                </Grid.ColumnDefinitions>
-
-                                <Border Width="40"
-                                        Height="40"
-                                        Background="#FFFFFF"
-                                        CornerRadius="2"
-                                        VerticalAlignment="Center">
-                                    <TextBlock Text="TL"
-                                               Foreground="#0D47A1"
-                                               FontSize="11"
-                                               FontWeight="Bold"
-                                               HorizontalAlignment="Center"
-                                               VerticalAlignment="Center"/>
-                                </Border>
-
-                                <StackPanel Grid.Column="1"
-                                            Margin="8,0,0,0"
-                                            VerticalAlignment="Center">
-                                    <TextBlock Text="TLAUNCHER"
-                                               Foreground="#FFFFFF"
-                                               FontSize="14"
-                                               FontWeight="Bold"/>
-                                    <TextBlock Text="PREMIUM"
-                                               Foreground="#FFB300"
-                                               FontSize="14"
-                                               FontWeight="Bold"/>
-                                    <TextBlock Text="[PROMO BANNER 1]"
-                                               Foreground="#BBDEFB"
-                                               FontSize="9"
-                                               Margin="0,3,0,0"/>
-                                </StackPanel>
-                            </Grid>
-                        </Border>
-
-                        <Border Height="100"
-                                Margin="0,6,0,0"
-                                Background="#BBDEFB">
-                            <TextBlock Text="[PROMO BANNER 2]"
-                                       Foreground="#0D47A1"
-                                       FontWeight="Bold"
-                                       FontSize="11"
-                                       HorizontalAlignment="Center"
-                                       VerticalAlignment="Center"/>
-                        </Border>
                     </StackPanel>
                 </StackPanel>
 
-                <!-- Нижние кнопки-иконки -->
-                <Grid Height="34"
-                      VerticalAlignment="Bottom"
-                      Margin="0,0,0,4">
-                    <StackPanel Orientation="Horizontal"
-                                HorizontalAlignment="Right"
-                                VerticalAlignment="Center"
-                                Margin="0,0,4,0">
-                        <Button Style="{StaticResource FooterIconButtonStyle}"
-                                ToolTip="TLauncher">
+                <!-- Промо-баннер -->
+                <Border Height="100"
+                        Margin="8,0,8,8"
+                        VerticalAlignment="Bottom">
+                    <Border.Background>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                            <GradientStop Color="#1565C0" Offset="0"/>
+                            <GradientStop Color="#0D47A1" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Border.Background>
+
+                    <Grid Margin="10,8">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="48"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Border Width="40"
+                                Height="40"
+                                Background="#FFFFFF"
+                                CornerRadius="2"
+                                VerticalAlignment="Center">
                             <TextBlock Text="TL"
+                                       Foreground="#0D47A1"
+                                       FontSize="11"
+                                       FontWeight="Bold"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"/>
+                        </Border>
+
+                        <StackPanel Grid.Column="1"
+                                    Margin="8,0,0,0"
+                                    VerticalAlignment="Center">
+                            <TextBlock Text="TLAUNCHER"
                                        Foreground="#FFFFFF"
+                                       FontSize="14"
+                                       FontWeight="Bold"/>
+                            <TextBlock Text="PREMIUM"
+                                       Foreground="#FFB300"
+                                       FontSize="14"
+                                       FontWeight="Bold"/>
+                            <TextBlock Text="[PROMO BANNER 1]"
+                                       Foreground="#BBDEFB"
                                        FontSize="9"
-                                       FontWeight="Bold"/>
-                        </Button>
-
-                        <Button Style="{StaticResource FooterIconButtonStyle}"
-                                ToolTip="Сообщество">
-                            <TextBlock Text="VK"
-                                       Foreground="#FFFFFF"
-                                       FontSize="8"
-                                       FontWeight="Bold"/>
-                        </Button>
-
-                        <Button Style="{StaticResource FooterIconButtonStyle}"
-                                ToolTip="Telegram">
-                            <TextBlock Text="&#xE724;"
-                                       FontFamily="Segoe MDL2 Assets"
-                                       Foreground="#FFFFFF"
-                                       FontSize="14"/>
-                        </Button>
-
-                        <Button Style="{StaticResource FooterIconButtonStyle}"
-                                ToolTip="Настройки">
-                            <TextBlock Text="&#xE713;"
-                                       FontFamily="Segoe MDL2 Assets"
-                                       Foreground="#FFFFFF"
-                                       FontSize="14"/>
-                        </Button>
-                    </StackPanel>
-                </Grid>
+                                       Margin="0,3,0,0"/>
+                        </StackPanel>
+                    </Grid>
+                </Border>
             </Grid>
         </Grid>
     </Border>

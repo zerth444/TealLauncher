@@ -10,4 +10,8 @@
     <AssemblyName>TLauncherRemake</AssemblyName>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Resource Include="Assets\launcher-background.png" />
+  </ItemGroup>
+
 </Project>
