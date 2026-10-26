@@ -14,6 +14,7 @@
     <Resource Include="Assets\launcher-background.png" />
     <Resource Include="Assets\premium-banner.png" />
     <Resource Include="Assets\icon-group.png" />
+    <Resource Include="Assets\sidebar.png" />
   </ItemGroup>
 
 </Project>
