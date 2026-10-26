@@ -44,6 +44,14 @@ public partial class MainWindow : Window
         Close();
     }
 
+    private void PageScrollBar_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+    {
+        if (NewsScrollViewer is not null)
+        {
+            NewsScrollViewer.ScrollToVerticalOffset(e.NewValue);
+        }
+    }
+
     private void ToggleMaximize()
     {
         if (_isMaximized)
