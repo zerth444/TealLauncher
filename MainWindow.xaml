@@ -562,8 +562,7 @@
                         HorizontalAlignment="Left"
                         VerticalAlignment="Top"
                         Margin="28,0,0,0"
-                        Background="#D8B555"
-                        Visibility="Collapsed">
+                        Background="#D8B555">
                     <Grid>
                         <Button Content="✕"
                                 Width="24"
@@ -634,8 +633,7 @@
                         Margin="302,0,0,0"
                         Background="#FFFFFF"
                         BorderBrush="#9E9E9E"
-                        BorderThickness="1"
-                        Visibility="Collapsed">
+                        BorderThickness="1">
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="26"/>
@@ -910,27 +908,74 @@
                 </Button>
 
                 <!-- Правая группа: моды, обновление, папка игры, настройки -->
-                <Grid Grid.Column="4"
-                      Width="230"
-                      Height="70"
-                      HorizontalAlignment="Right"
-                      VerticalAlignment="Top"
-                      Margin="0,0,21,0">
-                    <Image Source="Assets/icon-group.png"
-                           Stretch="Fill"
-                           RenderOptions.BitmapScalingMode="HighQuality"/>
+                <StackPanel Grid.Column="4"
+                            Orientation="Horizontal"
+                            VerticalAlignment="Center"
+                            Margin="0,0,31,0">
+                    <Button Style="{StaticResource IconHoverButtonStyle}"
+                            Width="56"
+                            Height="70"
+                            Margin="0,0,16,0"
+                            ToolTip="Моды">
+                        <StackPanel HorizontalAlignment="Center"
+                                    VerticalAlignment="Center">
+                            <TextBlock Text="TL"
+                                       Foreground="#FFFFFF"
+                                       FontSize="15"
+                                       FontWeight="Bold"
+                                       HorizontalAlignment="Center"/>
+                            <Viewbox Width="24" Height="20"
+                                     Margin="0,1,0,1">
+                                <Canvas Width="20" Height="18">
+                                    <Polygon Points="10,0 20,4 10,8 0,4" Fill="#FFFFFF"/>
+                                    <Polygon Points="0,4 10,8 10,18 0,14" Fill="#E53935"/>
+                                    <Polygon Points="10,8 20,4 20,14 10,18" Fill="#B71C1C"/>
+                                    <Path Data="M 4,13 L 7,6 L 10,13 L 13,6 L 16,13"
+                                          Stroke="#FFFFFF"
+                                          StrokeThickness="2"
+                                          Fill="Transparent"/>
+                                </Canvas>
+                            </Viewbox>
+                            <TextBlock Text="MODS"
+                                       Foreground="#FFFFFF"
+                                       FontSize="7"
+                                       FontWeight="Bold"
+                                       HorizontalAlignment="Center"/>
+                        </StackPanel>
+                    </Button>
 
-                    <UniformGrid Rows="1" Columns="4">
-                        <Button Style="{StaticResource IconHoverButtonStyle}"
-                                ToolTip="Моды"/>
-                        <Button Style="{StaticResource IconHoverButtonStyle}"
-                                ToolTip="Обновить"/>
-                        <Button Style="{StaticResource IconHoverButtonStyle}"
-                                ToolTip="Папка игры"/>
-                        <Button Style="{StaticResource IconHoverButtonStyle}"
-                                ToolTip="Настройки"/>
-                    </UniformGrid>
-                </Grid>
+                    <Button Style="{StaticResource IconHoverButtonStyle}"
+                            Width="36"
+                            Height="36"
+                            Margin="0,0,16,0"
+                            ToolTip="Обновить">
+                        <TextBlock Text="&#xE72C;"
+                                   FontFamily="Segoe MDL2 Assets"
+                                   Foreground="#FFFFFF"
+                                   FontSize="24"/>
+                    </Button>
+
+                    <Button Style="{StaticResource IconHoverButtonStyle}"
+                            Width="36"
+                            Height="36"
+                            Margin="0,0,16,0"
+                            ToolTip="Папка игры">
+                        <TextBlock Text="&#xE8B7;"
+                                   FontFamily="Segoe MDL2 Assets"
+                                   Foreground="#FFFFFF"
+                                   FontSize="24"/>
+                    </Button>
+
+                    <Button Style="{StaticResource IconHoverButtonStyle}"
+                            Width="36"
+                            Height="36"
+                            ToolTip="Настройки">
+                        <TextBlock Text="&#xE713;"
+                                   FontFamily="Segoe MDL2 Assets"
+                                   Foreground="#FFFFFF"
+                                   FontSize="24"/>
+                    </Button>
+                </StackPanel>
             </Grid>
 
             <!-- ПРАВАЯ ПАНЕЛЬ -->
@@ -943,25 +988,7 @@
                     </LinearGradientBrush>
                 </Grid.Background>
 
-                <Image Source="Assets/sidebar.png"
-                       Stretch="Fill"/>
-
-                <Canvas>
-                    <Button Canvas.Left="10" Canvas.Top="70" Width="212" Height="40"
-                            Style="{StaticResource IconHoverButtonStyle}" ToolTip="Помощь"/>
-                    <Button Canvas.Left="10" Canvas.Top="115" Width="212" Height="35"
-                            Style="{StaticResource IconHoverButtonStyle}" ToolTip="Установить скин"/>
-                    <Button Canvas.Left="10" Canvas.Top="155" Width="212" Height="35"
-                            Style="{StaticResource IconHoverButtonStyle}" ToolTip="Плащи с анимацией"/>
-                    <Button Canvas.Left="10" Canvas.Top="195" Width="212" Height="40"
-                            Style="{StaticResource IconHoverButtonStyle}" ToolTip="Online с друзьями"/>
-                    <Button Canvas.Left="10" Canvas.Top="240" Width="212" Height="36"
-                            Style="{StaticResource IconHoverButtonStyle}" ToolTip="TLauncher.ru"/>
-                    <Button Canvas.Left="10" Canvas.Top="280" Width="212" Height="36"
-                            Style="{StaticResource IconHoverButtonStyle}" ToolTip="Сообщество"/>
-                </Canvas>
-
-                <StackPanel Visibility="Collapsed">
+                <StackPanel>
                     <!-- Верхняя плашка -->
                     <Border Height="62"
                             BorderBrush="#3B7FA3"
