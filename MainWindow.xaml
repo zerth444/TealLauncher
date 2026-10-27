@@ -13,7 +13,8 @@
         ResizeMode="CanResize"
         WindowStartupLocation="CenterScreen"
         UseLayoutRounding="True"
-        SnapsToDevicePixels="True">
+        SnapsToDevicePixels="True"
+        Loaded="Window_Loaded">
 
     <shell:WindowChrome.WindowChrome>
         <shell:WindowChrome CaptionHeight="0"
@@ -394,169 +395,53 @@
                                   HorizontalScrollBarVisibility="Disabled">
                         <StackPanel Margin="22,22,22,18">
 
-                        <!-- Новость 1 -->
-                        <Grid Margin="0,0,0,6">
-                            <TextBlock Text="Версия Minecraft 26.1 уже доступна! ВАЖНО!"
-                                       Foreground="#1976D2"
-                                       FontSize="16"
-                                       FontWeight="Bold"/>
-                        </Grid>
-
-                        <TextBlock Text="Если вы столкнулись с ошибкой при запуске версии 26.1, убедитесь, что у вас установлена последняя версия «Teal Launcher». Для этого нажмите на значок шестеренки в углу программы запуска, там вы увидите пункт «Обновить Teal Launcher». Обязательно обновите его!"
-                                   Foreground="Black"
+                        <TextBlock x:Name="MinecraftUpdatesStatus"
+                                   Text="Загрузка обновлений..."
+                                   Foreground="#757575"
                                    FontSize="12"
-                                   TextWrapping="Wrap"
-                                   Margin="0,0,0,18"/>
+                                   Margin="0,0,0,14"/>
 
-                        <!-- Новость 2 -->
-                        <Grid Margin="0,0,0,6">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="Auto"/>
-                            </Grid.ColumnDefinitions>
+                        <ItemsControl x:Name="MinecraftUpdatesList">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Margin="0,0,0,18">
+                                        <Grid Margin="0,0,0,6">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="Auto"/>
+                                            </Grid.ColumnDefinitions>
 
-                            <TextBlock Text="Minecraft 26.3"
-                                       Foreground="#1976D2"
-                                       FontSize="16"
-                                       FontWeight="Bold"/>
+                                            <TextBlock Text="{Binding Title}"
+                                                       Foreground="#1976D2"
+                                                       FontSize="16"
+                                                       FontWeight="Bold"
+                                                       TextWrapping="Wrap"/>
 
-                            <TextBlock Grid.Column="1"
-                                       Text="Дата выпуска: 15 сентября 2026 года"
-                                       Foreground="#757575"
-                                       FontSize="10"
-                                       VerticalAlignment="Bottom"/>
-                        </Grid>
+                                            <TextBlock Grid.Column="1"
+                                                       Text="{Binding DateText}"
+                                                       Foreground="#757575"
+                                                       FontSize="10"
+                                                       VerticalAlignment="Bottom"
+                                                       Margin="12,0,0,0"/>
+                                        </Grid>
 
-                        <TextBlock Text="«World Generation»"
-                                   Foreground="Black"
-                                   FontSize="12"
-                                   FontWeight="Bold"
-                                   TextWrapping="Wrap"
-                                   Margin="0,0,0,4"/>
+                                        <TextBlock Text="{Binding Summary}"
+                                                   Foreground="Black"
+                                                   FontSize="12"
+                                                   TextWrapping="Wrap"
+                                                   Margin="0,0,0,6"/>
 
-                        <TextBlock Text="•  «Пятнистый лес» — новый осенний биом, который появляется вблизи холодных регионов. Здесь растут новые деревья — тополя, а также красные кусты, коричневые грибы и травинки, а земля покрыта сухими листьями."
-                                   Foreground="Black"
-                                   FontSize="12"
-                                   TextWrapping="Wrap"
-                                   Margin="0,0,0,2"/>
-                        <TextBlock Text="•  «Заброшенный лагерь» — новое природное сооружение, которое может появляться во многих лесных и равнинных биомах, включая тайгу, саванну, болота, джунгли и вишнёвые рощи."
-                                   Foreground="Black"
-                                   FontSize="12"
-                                   TextWrapping="Wrap"
-                                   Margin="0,0,0,18"/>
-
-                        <!-- Новость 3 -->
-                        <Grid Margin="0,0,0,6">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="Auto"/>
-                            </Grid.ColumnDefinitions>
-
-                            <TextBlock Text="Minecraft 26.2"
-                                       Foreground="#1976D2"
-                                       FontSize="16"
-                                       FontWeight="Bold"/>
-
-                            <TextBlock Grid.Column="1"
-                                       Text="Дата выпуска: 12 августа 2026 года"
-                                       Foreground="#757575"
-                                       FontSize="10"
-                                       VerticalAlignment="Bottom"/>
-                        </Grid>
-
-                        <TextBlock Text="Исправления и улучшения"
-                                   Foreground="Black"
-                                   FontSize="12"
-                                   FontWeight="Bold"
-                                   Margin="0,0,0,4"/>
-
-                        <TextBlock Text="•  Устранены проблемы с загрузкой игровых файлов и отображением новостей."
-                                   Foreground="Black"
-                                   FontSize="12"
-                                   TextWrapping="Wrap"
-                                   Margin="0,0,0,2"/>
-                        <TextBlock Text="•  Повышена стабильность работы лаунчера при переключении версий."
-                                   Foreground="Black"
-                                   FontSize="12"
-                                   TextWrapping="Wrap"
-                                   Margin="0,0,0,18"/>
-
-                        <!-- Новость 4 -->
-                        <Grid Margin="0,0,0,6">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="Auto"/>
-                            </Grid.ColumnDefinitions>
-
-                            <TextBlock Text="Minecraft 26.1"
-                                       Foreground="#1976D2"
-                                       FontSize="16"
-                                       FontWeight="Bold"/>
-
-                            <TextBlock Grid.Column="1"
-                                       Text="Дата выпуска: 15 июля 2026 года"
-                                       Foreground="#757575"
-                                       FontSize="10"
-                                       VerticalAlignment="Bottom"/>
-                        </Grid>
-
-                        <TextBlock Text="Новый патч"
-                                   Foreground="Black"
-                                   FontSize="12"
-                                   FontWeight="Bold"
-                                   Margin="0,0,0,4"/>
-
-                        <TextBlock Text="•  Добавлены новые возможности для работы с версиями игры и настройками профиля."
-                                   Foreground="Black"
-                                   FontSize="12"
-                                   TextWrapping="Wrap"
-                                   Margin="0,0,0,2"/>
-                        <TextBlock Text="•  Обновлены тексты-заглушки, чтобы проверить прокрутку ленты новостей."
-                                   Foreground="Black"
-                                   FontSize="12"
-                                   TextWrapping="Wrap"
-                                   Margin="0,0,0,18"/>
-
-                        <!-- Новость 5 -->
-                        <Grid Margin="0,0,0,6">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="Auto"/>
-                            </Grid.ColumnDefinitions>
-
-                            <TextBlock Text="Minecraft 26.0"
-                                       Foreground="#1976D2"
-                                       FontSize="16"
-                                       FontWeight="Bold"/>
-
-                            <TextBlock Grid.Column="1"
-                                       Text="Дата выпуска: 20 июня 2026 года"
-                                       Foreground="#757575"
-                                       FontSize="10"
-                                       VerticalAlignment="Bottom"/>
-                        </Grid>
-
-                        <TextBlock Text="Стабильность и совместимость"
-                                   Foreground="Black"
-                                   FontSize="12"
-                                   FontWeight="Bold"
-                                   Margin="0,0,0,4"/>
-
-                        <TextBlock Text="•  Исправлены ошибки при работе с профилями и подключении к серверам."
-                                   Foreground="Black"
-                                   FontSize="12"
-                                   TextWrapping="Wrap"
-                                   Margin="0,0,0,2"/>
-                        <TextBlock Text="•  Обновлены библиотеки и улучшена совместимость с модами."
-                                   Foreground="Black"
-                                   FontSize="12"
-                                   TextWrapping="Wrap"
-                                   Margin="0,0,0,2"/>
-                        <TextBlock Text="•  Добавлены новые заглушки для проверки прокрутки ленты."
-                                   Foreground="Black"
-                                   FontSize="12"
-                                   TextWrapping="Wrap"
-                                   Margin="0,0,0,2"/>
+                                        <TextBlock Text="Читать полностью на Minecraft Wiki"
+                                                   Foreground="#1976D2"
+                                                   FontSize="11"
+                                                   Cursor="Hand"
+                                                   Tag="{Binding Url}"
+                                                   TextDecorations="Underline"
+                                                   MouseLeftButtonUp="MinecraftUpdateLink_Click"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
 
                     </StackPanel>
                     </ScrollViewer>
@@ -631,7 +516,7 @@
                     </Grid>
                 </Border>
 
-                <!-- Рекомендуемые серверы -->
+                <!-- Популярные сборки Modrinth -->
                 <Border Width="492"
                         Height="134"
                         HorizontalAlignment="Left"
@@ -647,7 +532,7 @@
                         </Grid.RowDefinitions>
 
                         <Border Background="#3CAAE8">
-                            <TextBlock Text="Рекомендуемые серверы"
+                            <TextBlock Text="Популярные сборки"
                                        Foreground="#FFFFFF"
                                        FontSize="14"
                                        VerticalAlignment="Center"
@@ -660,101 +545,67 @@
                                 <RowDefinition Height="28"/>
                             </Grid.RowDefinitions>
 
-                            <StackPanel>
-                                <Border Height="26"
-                                        BorderBrush="#DDDDDD"
-                                        BorderThickness="0,0,0,1">
-                                    <Grid Margin="8,0">
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="*"/>
-                                            <ColumnDefinition Width="Auto"/>
-                                        </Grid.ColumnDefinitions>
-                                        <TextBlock Text="BOMJPVP — Бомж резня в коробке, качайся и унижай"
-                                                   Foreground="#222222"
-                                                   FontSize="10"
-                                                   VerticalAlignment="Center"/>
-                                        <TextBlock Grid.Column="1"
-                                                   Text="play.bomjpvp.top"
-                                                   Foreground="#2B95D7"
-                                                   FontSize="10"
-                                                   VerticalAlignment="Center"/>
-                                    </Grid>
-                                </Border>
+                            <Grid>
+                                <ItemsControl x:Name="PopularModpacksList">
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <Border Height="26"
+                                                    BorderBrush="#DDDDDD"
+                                                    BorderThickness="0,0,0,1"
+                                                    Background="Transparent"
+                                                    Cursor="Hand"
+                                                    Tag="{Binding ProjectUrl}"
+                                                    ToolTip="{Binding Details}"
+                                                    MouseLeftButtonUp="PopularModpackRow_MouseLeftButtonUp">
+                                                <Grid Margin="8,0">
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="*"/>
+                                                        <ColumnDefinition Width="Auto"/>
+                                                    </Grid.ColumnDefinitions>
+                                                    <TextBlock Text="{Binding Title}"
+                                                               Foreground="#222222"
+                                                               FontSize="10"
+                                                               VerticalAlignment="Center"
+                                                               TextTrimming="CharacterEllipsis"
+                                                               Margin="0,0,8,0"/>
+                                                    <TextBlock Grid.Column="1"
+                                                               Text="{Binding DownloadsText}"
+                                                               Foreground="#2B95D7"
+                                                               FontSize="10"
+                                                               VerticalAlignment="Center"/>
+                                                </Grid>
+                                            </Border>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
 
-                                <Border Height="26"
-                                        BorderBrush="#DDDDDD"
-                                        BorderThickness="0,0,0,1">
-                                    <Grid Margin="8,0">
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="*"/>
-                                            <ColumnDefinition Width="Auto"/>
-                                        </Grid.ColumnDefinitions>
-                                        <TextBlock Text="[Гриф и Выживание] Забирай подарок от админа"
-                                                   Foreground="#222222"
-                                                   FontSize="10"
-                                                   VerticalAlignment="Center"/>
-                                        <TextBlock Grid.Column="1"
-                                                   Text="play.mangogrief.ru"
-                                                   Foreground="#2B95D7"
-                                                   FontSize="10"
-                                                   VerticalAlignment="Center"/>
-                                    </Grid>
-                                </Border>
-
-                                <Border Height="26"
-                                        BorderBrush="#DDDDDD"
-                                        BorderThickness="0,0,0,1">
-                                    <Grid Margin="8,0">
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="*"/>
-                                            <ColumnDefinition Width="Auto"/>
-                                        </Grid.ColumnDefinitions>
-                                        <TextBlock Text="FunnyMC — Анархия, выживание, BedWars, SkyBlock"
-                                                   Foreground="#222222"
-                                                   FontSize="10"
-                                                   VerticalAlignment="Center"/>
-                                        <TextBlock Grid.Column="1"
-                                                   Text="go.funnymc.net"
-                                                   Foreground="#2B95D7"
-                                                   FontSize="10"
-                                                   VerticalAlignment="Center"/>
-                                    </Grid>
-                                </Border>
-                            </StackPanel>
-
-                            <Grid Grid.Row="1">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="*"/>
-                                </Grid.ColumnDefinitions>
-                                <Border Background="#0C5AA6"
-                                        Margin="0,0,1,0">
-                                    <TextBlock Text="Ещё сервера"
-                                               Foreground="#FFFFFF"
-                                               FontSize="10"
-                                               HorizontalAlignment="Center"
-                                               VerticalAlignment="Center"/>
-                                </Border>
-                                <Border Grid.Column="1"
-                                        Background="#408AD2"
-                                        Margin="1,0">
-                                    <TextBlock Text="Добавить сервер"
-                                               Foreground="#FFFFFF"
-                                               FontSize="10"
-                                               HorizontalAlignment="Center"
-                                               VerticalAlignment="Center"/>
-                                </Border>
-                                <Border Grid.Column="2"
-                                        Background="#679ED2"
-                                        Margin="1,0,0,0">
-                                    <TextBlock Text="Добавить сервер бесплатно"
-                                               Foreground="#FFFFFF"
-                                               FontSize="9"
-                                               HorizontalAlignment="Center"
-                                               VerticalAlignment="Center"/>
-                                </Border>
+                                <TextBlock x:Name="PopularModpacksStatus"
+                                           Text="Загрузка..."
+                                           Foreground="#777777"
+                                           FontSize="10"
+                                           HorizontalAlignment="Center"
+                                           VerticalAlignment="Center"
+                                           IsHitTestVisible="False"/>
                             </Grid>
+
+                            <Button Grid.Row="1"
+                                    Background="#408AD2"
+                                    BorderThickness="0"
+                                    Padding="0"
+                                    Cursor="Hand"
+                                    Click="OpenModrinthModpacks_Click">
+                                <Button.Template>
+                                    <ControlTemplate TargetType="Button">
+                                        <Border Background="{TemplateBinding Background}">
+                                            <ContentPresenter HorizontalAlignment="Center"
+                                                              VerticalAlignment="Center"/>
+                                        </Border>
+                                    </ControlTemplate>
+                                </Button.Template>
+                                <TextBlock Text="Смотреть в Modrinth"
+                                           Foreground="#FFFFFF"
+                                           FontSize="10"/>
+                            </Button>
                         </Grid>
                     </Grid>
                 </Border>
