@@ -15,4 +15,9 @@
     <Resource Include="Assets\modrinth-logo-white.png" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="CmlLib.Core" Version="4.1.0" />
+    <PackageReference Include="CmlLib.Core.Auth.Microsoft" Version="3.4.0" />
+  </ItemGroup>
+
 </Project>

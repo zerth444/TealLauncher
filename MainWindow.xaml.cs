@@ -8,28 +8,61 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Text.RegularExpressions;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
+using CmlLib.Core;
+using CmlLib.Core.Auth;
+using CmlLib.Core.Auth.Microsoft;
+using CmlLib.Core.ProcessBuilder;
+using CmlLib.Core.Version;
+using CmlLib.Core.VersionMetadata;
+using Microsoft.Win32;
 
 namespace TLauncherRemake;
 
 public partial class MainWindow : Window
 {
     private static readonly HttpClient Http = CreateHttpClient();
+    private MinecraftPath _minecraftPath = new(
+        Path.Combine(
+            Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
+            "TealLauncher",
+            "minecraft"));
+    private MinecraftLauncher _minecraftLauncher = null!;
     private readonly ObservableCollection<PopularModpackItem> _popularModpacks = new();
     private readonly ObservableCollection<MinecraftUpdateItem> _minecraftUpdates = new();
+    private readonly ObservableCollection<MinecraftVersionItem> _minecraftVersions = new();
     private Rect _restoreBounds;
     private bool _isMaximized;
+    private bool _isLaunching;
+    private Process? _gameProcess;
+    private string? _customJavaPath;
+    private MSession? _authenticatedSession;
+    private JELoginHandler? _loginHandler;
 
     public MainWindow()
     {
         InitializeComponent();
         PopularModpacksList.ItemsSource = _popularModpacks;
         MinecraftUpdatesList.ItemsSource = _minecraftUpdates;
+        VersionComboBox.ItemsSource = _minecraftVersions;
+
+        InitializeMinecraftLauncher();
+        UpdateLaunchButtonState();
+    }
+
+    private void InitializeMinecraftLauncher()
+    {
+        _minecraftLauncher = new MinecraftLauncher(_minecraftPath);
+        _minecraftLauncher.ByteProgressChanged += MinecraftLauncher_ByteProgressChanged;
     }
 
     private async void Window_Loaded(object sender, RoutedEventArgs e)
     {
-        await Task.WhenAll(LoadPopularModpacksAsync(), LoadMinecraftUpdatesAsync());
+        await Task.WhenAll(
+            LoadPopularModpacksAsync(),
+            LoadMinecraftUpdatesAsync(),
+            LoadMinecraftVersionsAsync());
     }
 
     private void TitleBar_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -373,6 +406,548 @@ public partial class MainWindow : Window
         }
     }
 
+    private async Task LoadMinecraftVersionsAsync()
+    {
+        VersionComboBox.IsEnabled = false;
+
+        try
+        {
+            var allVersions = await _minecraftLauncher.GetAllVersionsAsync();
+            List<IVersionMetadata> releases = allVersions
+                .Where(version => version.GetVersionType() == MVersionType.Release)
+                .GroupBy(version => version.Name)
+                .Select(group => group.First())
+                .OrderByDescending(version => version.ReleaseTime)
+                .ToList();
+
+            int latestIndex = releases.FindIndex(version => version.Name == "26.3");
+            int oldestIndex = releases.FindIndex(version => version.Name == "1.0");
+
+            if (latestIndex < 0)
+            {
+                latestIndex = 0;
+            }
+
+            if (oldestIndex < latestIndex)
+            {
+                oldestIndex = releases.Count - 1;
+            }
+
+            List<IVersionMetadata> allowedVersions = releases
+                .Skip(latestIndex)
+                .Take(oldestIndex - latestIndex + 1)
+                .ToList();
+
+            _minecraftVersions.Clear();
+
+            foreach (IVersionMetadata version in allowedVersions)
+            {
+                _minecraftVersions.Add(new MinecraftVersionItem
+                {
+                    Name = version.Name,
+                    DisplayName = _minecraftVersions.Count == 0
+                        ? $"Новейшая версия {version.Name}"
+                        : $"Версия {version.Name}"
+                });
+            }
+
+            VersionComboBox.SelectedIndex = _minecraftVersions.Count > 0 ? 0 : -1;
+            UpdateLaunchButtonState();
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show(
+                this,
+                $"Не удалось загрузить список версий Minecraft:\n{ex.Message}",
+                "Teal Launcher",
+                MessageBoxButton.OK,
+                MessageBoxImage.Error);
+        }
+        finally
+        {
+            VersionComboBox.IsEnabled = true;
+        }
+    }
+
+    private void VersionComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    {
+        UpdateLaunchButtonState();
+    }
+
+    private void MinecraftLauncher_ByteProgressChanged(object? sender, ByteProgress e)
+    {
+        if (!_isLaunching)
+        {
+            return;
+        }
+
+        double percentage = e.ToRatio() * 100;
+
+        if (percentage > 0)
+        {
+            LaunchButton.Content = $"Загрузка {percentage:0}%";
+        }
+    }
+
+    private async void LaunchButton_Click(object sender, RoutedEventArgs e)
+    {
+        if (_isLaunching || _gameProcess is { HasExited: false })
+        {
+            return;
+        }
+
+        if (VersionComboBox.SelectedItem is not MinecraftVersionItem selectedVersion)
+        {
+            MessageBox.Show(
+                this,
+                "Сначала выберите версию Minecraft.",
+                "Teal Launcher",
+                MessageBoxButton.OK,
+                MessageBoxImage.Warning);
+
+            return;
+        }
+
+        bool cleanInstall = UpdateClientCheckBox.IsChecked == true;
+
+        if (!cleanInstall && !IsVersionInstalled(selectedVersion.Name))
+        {
+            await InstallVersionAsync(selectedVersion);
+            return;
+        }
+
+        string nickname = EmailTextBox.Text.Trim();
+
+        if (!Regex.IsMatch(nickname, "^[A-Za-z0-9_]{3,16}$"))
+        {
+            MessageBox.Show(
+                this,
+                "Введите никнейм из 3–16 символов: латинские буквы, цифры или _.",
+                "Teal Launcher",
+                MessageBoxButton.OK,
+                MessageBoxImage.Warning);
+
+            EmailTextBox.Focus();
+            return;
+        }
+
+        if (cleanInstall)
+        {
+            MessageBoxResult result = MessageBox.Show(
+                this,
+                "Будет выполнена чистая установка Minecraft. Все миры, настройки, моды и ресурспаки в папке игры будут удалены. Продолжить?",
+                "Обновить клиент",
+                MessageBoxButton.YesNo,
+                MessageBoxImage.Warning);
+
+            if (result != MessageBoxResult.Yes)
+            {
+                return;
+            }
+        }
+
+        _isLaunching = true;
+        SetLaunchButton(cleanInstall ? "Очистка..." : "Запуск...", false);
+
+        try
+        {
+            if (cleanInstall)
+            {
+                string gameDirectory = _minecraftPath.BasePath;
+
+                if (Directory.Exists(gameDirectory))
+                {
+                    Directory.Delete(gameDirectory, true);
+                }
+
+                _minecraftPath = new MinecraftPath(gameDirectory);
+                InitializeMinecraftLauncher();
+                SetLaunchButton("Установка...", false);
+            }
+
+            await _minecraftLauncher.InstallAsync(selectedVersion.Name);
+
+            IVersion version = await _minecraftLauncher.GetVersionAsync(selectedVersion.Name);
+            string? javaPath;
+
+            if (SettingsJavaComboBox.SelectedIndex == 1)
+            {
+                if (string.IsNullOrWhiteSpace(_customJavaPath) || !File.Exists(_customJavaPath))
+                {
+                    throw new InvalidOperationException("Указанный путь к Java не найден.");
+                }
+
+                javaPath = _customJavaPath;
+            }
+            else
+            {
+                javaPath = _minecraftLauncher.GetJavaPath(version);
+
+                if (string.IsNullOrWhiteSpace(javaPath))
+                {
+                    javaPath = _minecraftLauncher.GetDefaultJavaPath();
+                }
+
+                if (string.IsNullOrWhiteSpace(javaPath))
+                {
+                    throw new InvalidOperationException("Java не найдена. Установите Java и попробуйте снова.");
+                }
+            }
+
+            int maximumRam = Math.Max(512, (int)Math.Round(SettingsMemorySlider.Value));
+            int screenWidth = int.TryParse(SettingsWidthTextBox.Text.Trim(), out int parsedWidth) && parsedWidth > 0
+                ? parsedWidth
+                : 0;
+            int screenHeight = int.TryParse(SettingsHeightTextBox.Text.Trim(), out int parsedHeight) && parsedHeight > 0
+                ? parsedHeight
+                : 0;
+
+            var launchOption = new MLaunchOption
+            {
+                Session = _authenticatedSession ?? MSession.CreateOfflineSession(nickname),
+                MaximumRamMb = maximumRam,
+                MinimumRamMb = Math.Min(1024, maximumRam),
+                ScreenWidth = screenWidth,
+                ScreenHeight = screenHeight,
+                FullScreen = SettingsFullscreenCheckBox.IsChecked == true,
+                JavaPath = javaPath,
+                GameLauncherName = "Teal Launcher",
+                GameLauncherVersion = "1.0"
+            };
+
+            string extraArguments = SettingsArgumentsTextBox.Text.Trim();
+
+            if (!string.IsNullOrWhiteSpace(extraArguments))
+            {
+                launchOption.ExtraGameArguments = new[] { MArgument.FromCommandLine(extraArguments) };
+            }
+
+            Process process = await _minecraftLauncher.BuildProcessAsync(selectedVersion.Name, launchOption);
+            process.Start();
+            _gameProcess = process;
+
+            if (cleanInstall)
+            {
+                UpdateClientCheckBox.IsChecked = false;
+            }
+
+            SetLaunchButton("В игре", false);
+            _ = TrackGameProcessAsync(process);
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show(
+                this,
+                $"Не удалось запустить Minecraft:\n{ex.Message}",
+                "Teal Launcher",
+                MessageBoxButton.OK,
+                MessageBoxImage.Error);
+        }
+        finally
+        {
+            _isLaunching = false;
+
+            if (_gameProcess is null || _gameProcess.HasExited)
+            {
+                UpdateLaunchButtonState();
+            }
+        }
+    }
+
+    private async Task InstallVersionAsync(MinecraftVersionItem selectedVersion)
+    {
+        _isLaunching = true;
+        SetLaunchButton("Установка...", false);
+
+        try
+        {
+            await _minecraftLauncher.InstallAsync(selectedVersion.Name);
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show(
+                this,
+                $"Не удалось установить Minecraft:\n{ex.Message}",
+                "Teal Launcher",
+                MessageBoxButton.OK,
+                MessageBoxImage.Error);
+        }
+        finally
+        {
+            _isLaunching = false;
+            UpdateLaunchButtonState();
+        }
+    }
+
+    private async Task TrackGameProcessAsync(Process process)
+    {
+        try
+        {
+            await process.WaitForExitAsync();
+        }
+        catch
+        {
+        }
+
+        if (ReferenceEquals(_gameProcess, process))
+        {
+            _gameProcess = null;
+        }
+
+        UpdateLaunchButtonState();
+    }
+
+    private bool IsVersionInstalled(string versionName)
+    {
+        return File.Exists(_minecraftPath.GetVersionJsonPath(versionName))
+            && File.Exists(_minecraftPath.GetVersionJarPath(versionName));
+    }
+
+    private void UpdateLaunchButtonState()
+    {
+        if (_isLaunching)
+        {
+            return;
+        }
+
+        if (_gameProcess is { HasExited: false })
+        {
+            SetLaunchButton("В игре", false);
+            return;
+        }
+
+        if (VersionComboBox.SelectedItem is not MinecraftVersionItem selectedVersion)
+        {
+            SetLaunchButton("Играть", false);
+            return;
+        }
+
+        if (UpdateClientCheckBox.IsChecked == true)
+        {
+            SetLaunchButton("Переустановить", true);
+            return;
+        }
+
+        SetLaunchButton(
+            IsVersionInstalled(selectedVersion.Name) ? "Играть" : "Установить",
+            true);
+    }
+
+    private void UpdateClientCheckBox_Changed(object sender, RoutedEventArgs e)
+    {
+        UpdateLaunchButtonState();
+    }
+
+    private void SetLaunchButton(string text, bool enabled)
+    {
+        LaunchButton.Content = text;
+        LaunchButton.IsEnabled = enabled;
+    }
+
+    private void OpenFolderButton_Click(object sender, RoutedEventArgs e)
+    {
+        Directory.CreateDirectory(_minecraftPath.BasePath);
+        Directory.CreateDirectory(Path.Combine(_minecraftPath.BasePath, "mods"));
+        Directory.CreateDirectory(Path.Combine(_minecraftPath.BasePath, "resourcepacks"));
+        Directory.CreateDirectory(Path.Combine(_minecraftPath.BasePath, "shaderpacks"));
+
+        OpenUrl(_minecraftPath.BasePath);
+    }
+
+    private void OpenGitHub_Click(object sender, RoutedEventArgs e)
+    {
+        OpenUrl("https://github.com/");
+    }
+
+    private async void AccountsCheckBox_Checked(object sender, RoutedEventArgs e)
+    {
+        try
+        {
+            JELoginHandler loginHandler = GetLoginHandler();
+            MSession? session = null;
+
+            try
+            {
+                session = await loginHandler.AuthenticateSilently();
+            }
+            catch
+            {
+            }
+
+            if (session is null || string.IsNullOrWhiteSpace(session.Username))
+            {
+                var loginWindow = new AccountLoginWindow(loginHandler)
+                {
+                    Owner = this
+                };
+
+                if (loginWindow.ShowDialog() != true || loginWindow.Session is null)
+                {
+                    AccountsCheckBox.IsChecked = false;
+                    return;
+                }
+
+                session = loginWindow.Session;
+            }
+
+            if (!ApplyAuthenticatedSession(session))
+            {
+                AccountsCheckBox.IsChecked = false;
+            }
+        }
+        catch (Exception ex)
+        {
+            AccountsCheckBox.IsChecked = false;
+
+            MessageBox.Show(
+                this,
+                $"Не удалось восстановить аккаунт:\n{ex.Message}",
+                "Аккаунты",
+                MessageBoxButton.OK,
+                MessageBoxImage.Error);
+        }
+    }
+
+    private void AccountsCheckBox_Unchecked(object sender, RoutedEventArgs e)
+    {
+        _authenticatedSession = null;
+        EmailTextBox.IsReadOnly = false;
+    }
+
+    private JELoginHandler GetLoginHandler()
+    {
+        return _loginHandler ??= JELoginHandlerBuilder.BuildDefault();
+    }
+
+    private bool ApplyAuthenticatedSession(MSession? session)
+    {
+        if (session is null || string.IsNullOrWhiteSpace(session.Username))
+        {
+            return false;
+        }
+
+        _authenticatedSession = session;
+        EmailTextBox.Text = session.Username;
+        EmailTextBox.IsReadOnly = true;
+        return true;
+    }
+
+    private async void RefreshButton_Click(object sender, RoutedEventArgs e)
+    {
+        if (_isLaunching)
+        {
+            return;
+        }
+
+        SettingsOverlay.Visibility = Visibility.Collapsed;
+
+        await Task.WhenAll(
+            LoadPopularModpacksAsync(),
+            LoadMinecraftUpdatesAsync(),
+            LoadMinecraftVersionsAsync());
+
+        UpdateLaunchButtonState();
+    }
+
+    private void SettingsButton_Click(object sender, RoutedEventArgs e)
+    {
+        SettingsDirectoryTextBox.Text = _minecraftPath.BasePath;
+        SettingsOverlay.Visibility = Visibility.Visible;
+    }
+
+    private void CloseSettings_Click(object sender, RoutedEventArgs e)
+    {
+        SettingsOverlay.Visibility = Visibility.Collapsed;
+    }
+
+    private async void SettingsSave_Click(object sender, RoutedEventArgs e)
+    {
+        string selectedPath = SettingsDirectoryTextBox.Text.Trim();
+
+        if (!string.IsNullOrWhiteSpace(selectedPath)
+            && !string.Equals(selectedPath, _minecraftPath.BasePath, StringComparison.OrdinalIgnoreCase))
+        {
+            try
+            {
+                _minecraftPath = new MinecraftPath(selectedPath);
+                InitializeMinecraftLauncher();
+                await LoadMinecraftVersionsAsync();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(
+                    this,
+                    $"Не удалось изменить папку игры:\n{ex.Message}",
+                    "Teal Launcher",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Error);
+
+                return;
+            }
+        }
+
+        SettingsOverlay.Visibility = Visibility.Collapsed;
+    }
+
+    private void SettingsDefault_Click(object sender, RoutedEventArgs e)
+    {
+        SettingsWidthTextBox.Text = "925";
+        SettingsHeightTextBox.Text = "530";
+        SettingsFullscreenCheckBox.IsChecked = false;
+        SettingsArgumentsTextBox.Text = string.Empty;
+        SettingsMemorySlider.Value = 10871;
+
+        _customJavaPath = null;
+        SettingsJavaComboBox.Items.Clear();
+        SettingsJavaComboBox.Items.Add("По умолчанию");
+        SettingsJavaComboBox.SelectedIndex = 0;
+    }
+
+    private void SettingsJavaBrowse_Click(object sender, RoutedEventArgs e)
+    {
+        var dialog = new OpenFileDialog
+        {
+            Filter = "Java|javaw.exe;java.exe|Все файлы|*.*",
+            Title = "Выберите Java"
+        };
+
+        if (dialog.ShowDialog(this) == true)
+        {
+            _customJavaPath = dialog.FileName;
+            SettingsJavaComboBox.Items.Clear();
+            SettingsJavaComboBox.Items.Add("По умолчанию");
+            SettingsJavaComboBox.Items.Add(dialog.FileName);
+            SettingsJavaComboBox.SelectedIndex = 1;
+        }
+    }
+
+    private void SettingsResetAll_Click(object sender, RoutedEventArgs e)
+    {
+        SettingsDefault_Click(sender, e);
+    }
+
+    private void SettingsBrowse_Click(object sender, RoutedEventArgs e)
+    {
+        var dialog = new OpenFolderDialog
+        {
+            InitialDirectory = _minecraftPath.BasePath,
+            Title = "Выберите папку игры"
+        };
+
+        if (dialog.ShowDialog(this) == true)
+        {
+            SettingsDirectoryTextBox.Text = dialog.FolderName;
+        }
+    }
+
+    private void SettingsMemorySlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+    {
+        if (SettingsMemoryValue is not null)
+        {
+            SettingsMemoryValue.Text = $"{Math.Round(e.NewValue):0} МБ";
+        }
+    }
+
     private void ToggleMaximize()
     {
         if (_isMaximized)
@@ -433,6 +1008,12 @@ public sealed class ModrinthSearchHit
 
     [JsonPropertyName("downloads")]
     public long Downloads { get; init; }
+}
+
+public sealed class MinecraftVersionItem
+{
+    public string Name { get; init; } = string.Empty;
+    public string DisplayName { get; init; } = string.Empty;
 }
 
 public sealed class MinecraftUpdateItem

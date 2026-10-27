@@ -290,6 +290,133 @@
                 </Setter.Value>
             </Setter>
         </Style>
+
+        <Style x:Key="SettingsLabelStyle" TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="Arial"/>
+            <Setter Property="FontSize" Value="11"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Foreground" Value="#222222"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+
+        <Style x:Key="SettingsTextBoxStyle" TargetType="TextBox">
+            <Setter Property="Height" Value="25"/>
+            <Setter Property="Background" Value="#FFFFFF"/>
+            <Setter Property="BorderBrush" Value="#BDBDBD"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="FontFamily" Value="Arial"/>
+            <Setter Property="FontSize" Value="11"/>
+            <Setter Property="Foreground" Value="#222222"/>
+            <Setter Property="Padding" Value="6,0"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+        </Style>
+
+        <Style x:Key="SettingsComboBoxStyle"
+               TargetType="ComboBox"
+               BasedOn="{StaticResource VersionComboBoxStyle}">
+            <Setter Property="Height" Value="25"/>
+            <Setter Property="FontFamily" Value="Arial"/>
+            <Setter Property="FontSize" Value="11"/>
+            <Setter Property="Padding" Value="8,0,24,0"/>
+        </Style>
+
+        <Style x:Key="SettingsCheckBoxStyle" TargetType="CheckBox">
+            <Setter Property="FontFamily" Value="Arial"/>
+            <Setter Property="FontSize" Value="11"/>
+            <Setter Property="Foreground" Value="#222222"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="CheckBox">
+                        <StackPanel Orientation="Horizontal">
+                            <Border x:Name="CheckBorder"
+                                    Width="14"
+                                    Height="14"
+                                    Background="#FFFFFF"
+                                    BorderBrush="#A6A6A6"
+                                    BorderThickness="1"
+                                    VerticalAlignment="Center">
+                                <Path x:Name="CheckMark"
+                                      Data="M 2,7 L 5,10 L 12,3"
+                                      Stroke="#FFFFFF"
+                                      StrokeThickness="2"
+                                      Visibility="Collapsed"/>
+                            </Border>
+                            <ContentPresenter Margin="6,0,0,0"
+                                              VerticalAlignment="Center"/>
+                        </StackPanel>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter TargetName="CheckBorder" Property="Background" Value="#408AD2"/>
+                                <Setter TargetName="CheckBorder" Property="BorderBrush" Value="#408AD2"/>
+                                <Setter TargetName="CheckMark" Property="Visibility" Value="Visible"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="SettingsGreenButtonStyle" TargetType="Button">
+            <Setter Property="Height" Value="24"/>
+            <Setter Property="Background" Value="#679ED2"/>
+            <Setter Property="Foreground" Value="#FFFFFF"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="FontFamily" Value="Arial"/>
+            <Setter Property="FontSize" Value="11"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Padding" Value="0"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Center"
+                                              VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="SettingsOrangeButtonStyle"
+               TargetType="Button"
+               BasedOn="{StaticResource SettingsGreenButtonStyle}">
+            <Setter Property="Background" Value="#408AD2"/>
+        </Style>
+
+        <Style x:Key="SettingsRedButtonStyle"
+               TargetType="Button"
+               BasedOn="{StaticResource SettingsGreenButtonStyle}">
+            <Setter Property="Background" Value="#0C5AA6"/>
+        </Style>
+
+        <Style x:Key="SettingsOutlineButtonStyle"
+               TargetType="Button"
+               BasedOn="{StaticResource SettingsGreenButtonStyle}">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="#408AD2"/>
+            <Setter Property="BorderBrush" Value="#408AD2"/>
+            <Setter Property="BorderThickness" Value="1"/>
+        </Style>
+
+        <Style x:Key="SettingsTabButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="#2E8DC5"/>
+            <Setter Property="Foreground" Value="#EAF7FF"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="FontFamily" Value="Arial"/>
+            <Setter Property="FontSize" Value="11"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Center"
+                                              VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
     </Window.Resources>
 
     <Border Background="#FFFFFF"
@@ -661,11 +788,14 @@
                         </TextBlock>
                     </Grid>
 
-                    <CheckBox Grid.Row="1"
+                    <CheckBox x:Name="AccountsCheckBox"
+                              Grid.Row="1"
                               Content="Аккаунты"
                               Foreground="#FFFFFF"
                               FontSize="13"
-                              Margin="0,7,0,0"/>
+                              Margin="0,7,0,0"
+                              Checked="AccountsCheckBox_Checked"
+                              Unchecked="AccountsCheckBox_Unchecked"/>
                 </Grid>
 
                 <!-- Версия и обновление клиента -->
@@ -678,7 +808,8 @@
                     </Grid.RowDefinitions>
 
                     <Grid Grid.Row="0">
-                        <ComboBox Width="247"
+                        <ComboBox x:Name="VersionComboBox"
+                                  Width="247"
                                   Height="25"
                                   HorizontalAlignment="Left"
                                   Padding="8,0,24,0"
@@ -687,61 +818,50 @@
                                   BorderBrush="#9E9E9E"
                                   BorderThickness="1"
                                   FontSize="12"
-                                  SelectedIndex="0"
-                                  VerticalContentAlignment="Center">
-                            <ComboBoxItem Padding="0">
-                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                                    <Border Width="16" Height="16" Background="#2B95D7" BorderBrush="#FFFFFF" BorderThickness="1" CornerRadius="2" Margin="0,0,6,0">
-                                        <TextBlock Text="TL" Foreground="#FFFFFF" FontSize="7" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                    </Border>
-                                    <TextBlock Text="Новейшая версия 26.3" Foreground="#222222" FontSize="12" VerticalAlignment="Center"/>
-                                </StackPanel>
-                            </ComboBoxItem>
-                            <ComboBoxItem Padding="0">
-                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                                    <Border Width="16" Height="16" Background="#2B95D7" BorderBrush="#FFFFFF" BorderThickness="1" CornerRadius="2" Margin="0,0,6,0">
-                                        <TextBlock Text="TL" Foreground="#FFFFFF" FontSize="7" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                    </Border>
-                                    <TextBlock Text="Версия 1.21.4" Foreground="#222222" FontSize="12" VerticalAlignment="Center"/>
-                                </StackPanel>
-                            </ComboBoxItem>
-                            <ComboBoxItem Padding="0">
-                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                                    <Border Width="16" Height="16" Background="#2B95D7" BorderBrush="#FFFFFF" BorderThickness="1" CornerRadius="2" Margin="0,0,6,0">
-                                        <TextBlock Text="TL" Foreground="#FFFFFF" FontSize="7" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                    </Border>
-                                    <TextBlock Text="Версия 1.20.1" Foreground="#222222" FontSize="12" VerticalAlignment="Center"/>
-                                </StackPanel>
-                            </ComboBoxItem>
-                            <ComboBoxItem Padding="0">
-                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                                    <Border Width="16" Height="16" Background="#2B95D7" BorderBrush="#FFFFFF" BorderThickness="1" CornerRadius="2" Margin="0,0,6,0">
-                                        <TextBlock Text="TL" Foreground="#FFFFFF" FontSize="7" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                    </Border>
-                                    <TextBlock Text="Версия 1.16.5" Foreground="#222222" FontSize="12" VerticalAlignment="Center"/>
-                                </StackPanel>
-                            </ComboBoxItem>
-                            <ComboBoxItem Padding="0">
-                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                                    <Border Width="16" Height="16" Background="#2B95D7" BorderBrush="#FFFFFF" BorderThickness="1" CornerRadius="2" Margin="0,0,6,0">
-                                        <TextBlock Text="TL" Foreground="#FFFFFF" FontSize="7" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                    </Border>
-                                    <TextBlock Text="Версия 1.12.2" Foreground="#222222" FontSize="12" VerticalAlignment="Center"/>
-                                </StackPanel>
-                            </ComboBoxItem>
+                                  VerticalContentAlignment="Center"
+                                  SelectionChanged="VersionComboBox_SelectionChanged">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal"
+                                                VerticalAlignment="Center">
+                                        <Border Width="16"
+                                                Height="16"
+                                                Background="#2B95D7"
+                                                BorderBrush="#FFFFFF"
+                                                BorderThickness="1"
+                                                CornerRadius="2"
+                                                Margin="0,0,6,0">
+                                            <TextBlock Text="TL"
+                                                       Foreground="#FFFFFF"
+                                                       FontSize="7"
+                                                       FontWeight="Bold"
+                                                       HorizontalAlignment="Center"
+                                                       VerticalAlignment="Center"/>
+                                        </Border>
+                                        <TextBlock Text="{Binding DisplayName}"
+                                                   Foreground="#222222"
+                                                   FontSize="12"
+                                                   VerticalAlignment="Center"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
                         </ComboBox>
                     </Grid>
 
-                    <CheckBox Grid.Row="1"
+                    <CheckBox x:Name="UpdateClientCheckBox"
+                              Grid.Row="1"
                               Content="Обновить клиент"
                               Foreground="#FFFFFF"
                               FontSize="13"
-                              Margin="0,7,0,0"/>
+                              Margin="0,7,0,0"
+                              Checked="UpdateClientCheckBox_Changed"
+                              Unchecked="UpdateClientCheckBox_Changed"/>
                 </Grid>
 
-                <!-- Кнопка установки -->
-                <Button Grid.Column="2"
-                        Content="Установить"
+                <!-- Кнопка запуска -->
+                <Button x:Name="LaunchButton"
+                        Grid.Column="2"
+                        Content="Играть"
                         Width="240"
                         Height="49"
                         HorizontalAlignment="Left"
@@ -752,7 +872,8 @@
                         FontSize="18"
                         FontWeight="Bold"
                         BorderThickness="0"
-                        Cursor="Hand">
+                        Cursor="Hand"
+                        Click="LaunchButton_Click">
                     <Button.Template>
                         <ControlTemplate TargetType="Button">
                             <Border Background="{TemplateBinding Background}"
@@ -778,9 +899,11 @@
                                Stretch="Uniform"/>
                     </Button>
 
-                    <Button Style="{StaticResource IconHoverButtonStyle}"
+                    <Button x:Name="RefreshButton"
+                            Style="{StaticResource IconHoverButtonStyle}"
                             Margin="0,0,20,0"
-                            ToolTip="Обновить">
+                            ToolTip="Обновить интерфейс"
+                            Click="RefreshButton_Click">
                         <TextBlock Text="&#xE72C;"
                                    FontFamily="Segoe MDL2 Assets"
                                    Foreground="#FFFFFF"
@@ -789,7 +912,8 @@
 
                     <Button Style="{StaticResource IconHoverButtonStyle}"
                             Margin="0,0,20,0"
-                            ToolTip="Папка игры">
+                            ToolTip="Папка игры"
+                            Click="OpenFolderButton_Click">
                         <Path Width="24"
                               Height="24"
                               Stretch="Uniform"
@@ -800,8 +924,10 @@
                               Data="M 2,5 L 9,5 L 11,7 L 22,7 L 22,19 L 2,19 Z"/>
                     </Button>
 
-                    <Button Style="{StaticResource IconHoverButtonStyle}"
-                            ToolTip="Настройки">
+                    <Button x:Name="SettingsButton"
+                            Style="{StaticResource IconHoverButtonStyle}"
+                            ToolTip="Настройки"
+                            Click="SettingsButton_Click">
                         <TextBlock Text="&#xE713;"
                                    FontFamily="Segoe MDL2 Assets"
                                    Foreground="#FFFFFF"
@@ -977,6 +1103,36 @@
                             </StackPanel>
                         </Button>
 
+                        <Button Height="36"
+                                Margin="0,4,0,0"
+                                Style="{StaticResource PanelButtonStyle}"
+                                Background="#229ED9"
+                                Click="OpenGitHub_Click">
+                            <StackPanel Orientation="Horizontal"
+                                        VerticalAlignment="Stretch">
+                                <Border Width="36"
+                                        Height="36"
+                                        Background="#1B7FAF"
+                                        BorderBrush="#33FFFFFF"
+                                        BorderThickness="0,0,1,0">
+                                    <Viewbox Width="18"
+                                             Height="18"
+                                             HorizontalAlignment="Center"
+                                             VerticalAlignment="Center">
+                                        <Canvas Width="24" Height="24">
+                                            <Path Fill="#FFFFFF"
+                                                  Data="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/>
+                                        </Canvas>
+                                    </Viewbox>
+                                </Border>
+                                <TextBlock Text="GITHUB"
+                                           Foreground="#FFFFFF"
+                                           FontSize="12"
+                                           VerticalAlignment="Center"
+                                           Margin="10,0,0,0"/>
+                            </StackPanel>
+                        </Button>
+
                     </StackPanel>
                 </StackPanel>
             </Grid>
@@ -995,6 +1151,604 @@
                         SmallChange="16"
                         LargeChange="120"
                         ValueChanged="PageScrollBar_ValueChanged"/>
+
+        <Grid x:Name="SettingsOverlay"
+              Grid.RowSpan="3"
+              Grid.ColumnSpan="2"
+              Panel.ZIndex="100"
+              Background="#01000000"
+              Visibility="Collapsed">
+            <Border Width="613"
+                    Height="512"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Top"
+                    Margin="0,58,0,0"
+                    Background="#F5F5F5"
+                    BorderBrush="#8A8A8A"
+                    BorderThickness="1">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="26"/>
+                        <RowDefinition Height="26"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <Border Grid.Row="0" Background="#2E8DC5">
+                        <Grid>
+                            <Button Content="←"
+                                    Width="32"
+                                    Height="26"
+                                    HorizontalAlignment="Left"
+                                    Background="Transparent"
+                                    Foreground="#FFFFFF"
+                                    BorderThickness="0"
+                                    FontFamily="Arial"
+                                    FontSize="17"
+                                    Cursor="Hand"
+                                    Click="CloseSettings_Click"/>
+                            <TextBlock Text="Настройки/Дополнительно"
+                                       Foreground="#FFFFFF"
+                                       FontFamily="Arial"
+                                       FontSize="13"
+                                       FontWeight="Bold"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"/>
+                        </Grid>
+                    </Border>
+
+                    <Button Grid.Row="1"
+                            Content="Запуск Minecraft"
+                            Style="{StaticResource SettingsTabButtonStyle}"
+                            Background="#F5F5F5"
+                            Foreground="#1E88C7"/>
+
+                    <Grid Grid.Row="2">
+                        <Grid x:Name="SettingsLaunchTab">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="40"/>
+                            </Grid.RowDefinitions>
+
+                            <StackPanel Margin="18,12,18,0">
+                                <Grid Margin="0,0,0,10">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="110"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Text="Директория:" Style="{StaticResource SettingsLabelStyle}"/>
+                                    <StackPanel Grid.Column="1" Orientation="Horizontal">
+                                        <TextBox x:Name="SettingsDirectoryTextBox"
+                                                 Width="360"
+                                                 IsReadOnly="True"
+                                                 Style="{StaticResource SettingsTextBoxStyle}"/>
+                                        <Button Content="Обзор..."
+                                                Width="70"
+                                                Height="25"
+                                                Margin="6,0,0,0"
+                                                Style="{StaticResource SettingsGreenButtonStyle}"
+                                                Click="SettingsBrowse_Click"/>
+                                    </StackPanel>
+                                </Grid>
+
+                                <Grid Margin="0,0,0,10">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="110"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Text="Разрешение:" Style="{StaticResource SettingsLabelStyle}"/>
+                                    <StackPanel Grid.Column="1" Orientation="Horizontal">
+                                        <TextBox x:Name="SettingsWidthTextBox"
+                                                 Width="70"
+                                                 Text="925"
+                                                 Style="{StaticResource SettingsTextBoxStyle}"/>
+                                        <TextBlock Text="X"
+                                                   FontFamily="Arial"
+                                                   FontSize="11"
+                                                   VerticalAlignment="Center"
+                                                   Margin="10,0"/>
+                                        <TextBox x:Name="SettingsHeightTextBox"
+                                                 Width="70"
+                                                 Text="530"
+                                                 Style="{StaticResource SettingsTextBoxStyle}"/>
+                                        <CheckBox x:Name="SettingsFullscreenCheckBox"
+                                                  Content="Полноэкранный режим"
+                                                  Style="{StaticResource SettingsCheckBoxStyle}"
+                                                  Margin="20,0,0,0"/>
+                                    </StackPanel>
+                                </Grid>
+
+                                <Grid Margin="0,0,0,10">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="110"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Text="Список версий:"
+                                               Style="{StaticResource SettingsLabelStyle}"
+                                               VerticalAlignment="Top"
+                                               Margin="0,4,0,0"/>
+                                    <StackPanel Grid.Column="1">
+                                        <CheckBox Content="Отображать Снапшоты (&quot;Snapshots&quot;)"
+                                                  Style="{StaticResource SettingsCheckBoxStyle}"
+                                                  Margin="0,0,0,2"/>
+                                        <CheckBox Content="Отображать модифицированные"
+                                                  IsChecked="True"
+                                                  Style="{StaticResource SettingsCheckBoxStyle}"
+                                                  Margin="0,0,0,2"/>
+                                        <CheckBox Content="Отображать старые релизы (до 1.5.2)"
+                                                  IsChecked="True"
+                                                  Style="{StaticResource SettingsCheckBoxStyle}"
+                                                  Margin="0,0,0,2"/>
+                                        <CheckBox Content="Отображать Бета (2010-2011 гг.)"
+                                                  Style="{StaticResource SettingsCheckBoxStyle}"
+                                                  Margin="0,0,0,2"/>
+                                        <CheckBox Content="Отображать Альфа (2010 г.)"
+                                                  Style="{StaticResource SettingsCheckBoxStyle}"/>
+                                    </StackPanel>
+                                </Grid>
+
+                                <Grid Margin="0,0,0,10">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="110"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Text="Язык:" Style="{StaticResource SettingsLabelStyle}"/>
+                                    <CheckBox Grid.Column="1"
+                                              Content="Использовать язык TLauncher в Minecraft"
+                                              IsChecked="True"
+                                              Style="{StaticResource SettingsCheckBoxStyle}"/>
+                                </Grid>
+
+                                <Grid Margin="0,0,0,10">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="110"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Text="Minecraft аргументы:" Style="{StaticResource SettingsLabelStyle}"/>
+                                    <Grid Grid.Column="1">
+                                        <TextBox x:Name="SettingsArgumentsTextBox"
+                                                 Style="{StaticResource SettingsTextBoxStyle}"/>
+                                        <TextBlock Text="Minecraft-аргументы (напр. --server 127.0.0.1)"
+                                                   Foreground="#999999"
+                                                   FontFamily="Arial"
+                                                   FontSize="10"
+                                                   VerticalAlignment="Center"
+                                                   Margin="7,0,0,0"
+                                                   IsHitTestVisible="False">
+                                            <TextBlock.Style>
+                                                <Style TargetType="TextBlock">
+                                                    <Setter Property="Visibility" Value="Collapsed"/>
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding Text, ElementName=SettingsArgumentsTextBox}" Value="">
+                                                            <Setter Property="Visibility" Value="Visible"/>
+                                                        </DataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </TextBlock.Style>
+                                        </TextBlock>
+                                    </Grid>
+                                </Grid>
+
+                                <Grid Margin="0,0,0,10">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="110"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Text="Выбор Java:" Style="{StaticResource SettingsLabelStyle}"/>
+                                    <StackPanel Grid.Column="1" Orientation="Horizontal">
+                                        <ComboBox x:Name="SettingsJavaComboBox"
+                                                  Width="305"
+                                                  Style="{StaticResource SettingsComboBoxStyle}"
+                                                  SelectedIndex="0">
+                                            <ComboBoxItem Content="По умолчанию"/>
+                                        </ComboBox>
+                                        <Button Content="Изменить"
+                                                Width="70"
+                                                Height="25"
+                                                Margin="6,0,0,0"
+                                                Style="{StaticResource SettingsGreenButtonStyle}"
+                                                Click="SettingsJavaBrowse_Click"/>
+                                    </StackPanel>
+                                </Grid>
+
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="110"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Text="Выделение памяти:"
+                                               Style="{StaticResource SettingsLabelStyle}"
+                                               VerticalAlignment="Top"
+                                               Margin="0,4,0,0"/>
+                                    <StackPanel Grid.Column="1">
+                                        <TextBlock x:Name="SettingsMemoryValue"
+                                                   Text="10871 МБ"
+                                                   Foreground="#222222"
+                                                   FontFamily="Arial"
+                                                   FontSize="10"
+                                                   HorizontalAlignment="Right"
+                                                   Margin="0,0,0,2"/>
+                                        <Slider x:Name="SettingsMemorySlider"
+                                                Minimum="512"
+                                                Maximum="16307"
+                                                Value="10871"
+                                                TickFrequency="1"
+                                                IsSnapToTickEnabled="True"
+                                                ValueChanged="SettingsMemorySlider_ValueChanged"/>
+                                        <Grid Margin="0,2,0,0">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+                                            <TextBlock Text="512" Foreground="#555555" FontFamily="Arial" FontSize="9"/>
+                                            <TextBlock Grid.Column="1" Text="3671" Foreground="#555555" FontFamily="Arial" FontSize="9" HorizontalAlignment="Center"/>
+                                            <TextBlock Grid.Column="2" Text="6830" Foreground="#555555" FontFamily="Arial" FontSize="9" HorizontalAlignment="Center"/>
+                                            <TextBlock Grid.Column="3" Text="9989" Foreground="#555555" FontFamily="Arial" FontSize="9" HorizontalAlignment="Center"/>
+                                            <TextBlock Grid.Column="4" Text="13148" Foreground="#555555" FontFamily="Arial" FontSize="9" HorizontalAlignment="Center"/>
+                                            <TextBlock Grid.Column="5" Text="16307" Foreground="#555555" FontFamily="Arial" FontSize="9" HorizontalAlignment="Right"/>
+                                        </Grid>
+                                    </StackPanel>
+                                </Grid>
+                            </StackPanel>
+
+                            <StackPanel Grid.Row="1"
+                                        Orientation="Horizontal"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center">
+                                <Button Content="По умолчанию"
+                                        Width="118"
+                                        Style="{StaticResource SettingsGreenButtonStyle}"
+                                        Click="SettingsDefault_Click"/>
+                                <Button Content="Сохранить"
+                                        Width="118"
+                                        Margin="16,0,0,0"
+                                        Style="{StaticResource SettingsOrangeButtonStyle}"
+                                        Click="SettingsSave_Click"/>
+                            </StackPanel>
+                        </Grid>
+
+                        <Grid x:Name="SettingsLauncherTab" Visibility="Collapsed">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="40"/>
+                            </Grid.RowDefinitions>
+
+                            <StackPanel Margin="18,12,18,0">
+                                <Grid Margin="0,0,0,10">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="110"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Text="Консоль разработчика:" Style="{StaticResource SettingsLabelStyle}"/>
+                                    <ComboBox Grid.Column="1"
+                                              Width="405"
+                                              HorizontalAlignment="Left"
+                                              Style="{StaticResource SettingsComboBoxStyle}"
+                                              SelectedIndex="0">
+                                        <ComboBoxItem Content="Отключена"/>
+                                    </ComboBox>
+                                </Grid>
+
+                                <Grid Margin="0,0,0,10">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="110"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Text="Качество соединения:" Style="{StaticResource SettingsLabelStyle}"/>
+                                    <ComboBox Grid.Column="1"
+                                              Width="405"
+                                              HorizontalAlignment="Left"
+                                              Style="{StaticResource SettingsComboBoxStyle}"
+                                              SelectedIndex="0">
+                                        <ComboBoxItem Content="Хорошее"/>
+                                    </ComboBox>
+                                </Grid>
+
+                                <Grid Margin="0,0,0,10">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="110"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Text="При запуске Minecraft:" Style="{StaticResource SettingsLabelStyle}"/>
+                                    <ComboBox Grid.Column="1"
+                                              Width="405"
+                                              HorizontalAlignment="Left"
+                                              Style="{StaticResource SettingsComboBoxStyle}"
+                                              SelectedIndex="0">
+                                        <ComboBoxItem Content="Скрывать TLauncher"/>
+                                    </ComboBox>
+                                </Grid>
+
+                                <Grid Margin="0,0,0,10">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="110"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Text="Язык (language):" Style="{StaticResource SettingsLabelStyle}"/>
+                                    <Border Grid.Column="1"
+                                            Width="405"
+                                            Height="23"
+                                            HorizontalAlignment="Left"
+                                            Background="#67AEDE">
+                                        <TextBlock Text="Русский (Russian)"
+                                                   Foreground="#1F1F1F"
+                                                   FontFamily="Arial"
+                                                   FontSize="10"
+                                                   HorizontalAlignment="Center"
+                                                   VerticalAlignment="Center"/>
+                                    </Border>
+                                </Grid>
+
+                                <Grid Margin="0,0,0,10">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="110"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Text="Размер TLauncher:" Style="{StaticResource SettingsLabelStyle}"/>
+                                    <StackPanel Grid.Column="1" Orientation="Horizontal">
+                                        <ComboBox Width="60"
+                                                  Style="{StaticResource SettingsComboBoxStyle}"
+                                                  SelectedIndex="0">
+                                            <ComboBoxItem Content="100"/>
+                                        </ComboBox>
+                                        <TextBlock Text="%"
+                                                   FontFamily="Arial"
+                                                   FontSize="11"
+                                                   VerticalAlignment="Center"
+                                                   Margin="5,0"/>
+                                        <TextBlock Text="?"
+                                                   Foreground="#2B95D7"
+                                                   FontFamily="Arial"
+                                                   FontSize="13"
+                                                   FontWeight="Bold"
+                                                   VerticalAlignment="Center"/>
+                                    </StackPanel>
+                                </Grid>
+
+                                <TextBlock Text="Восстановление игрового прогресса"
+                                           FontFamily="Arial"
+                                           FontSize="11"
+                                           FontWeight="Bold"
+                                           Foreground="#222222"
+                                           Margin="0,2,0,8"/>
+
+                                <Grid Margin="0,0,0,8">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="110"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Text="Делать бэкапы:" Style="{StaticResource SettingsLabelStyle}"/>
+                                    <StackPanel Grid.Column="1" Orientation="Horizontal">
+                                        <CheckBox Content="Да"
+                                                  IsChecked="True"
+                                                  Style="{StaticResource SettingsCheckBoxStyle}"/>
+                                        <TextBlock Text="?"
+                                                   Foreground="#2B95D7"
+                                                   FontFamily="Arial"
+                                                   FontSize="13"
+                                                   FontWeight="Bold"
+                                                   VerticalAlignment="Center"
+                                                   Margin="10,0,0,0"/>
+                                    </StackPanel>
+                                </Grid>
+
+                                <Grid Margin="0,0,0,8">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="110"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Text="Частота бэкапа:" Style="{StaticResource SettingsLabelStyle}"/>
+                                    <ComboBox Grid.Column="1"
+                                              Width="405"
+                                              HorizontalAlignment="Left"
+                                              Style="{StaticResource SettingsComboBoxStyle}"
+                                              SelectedIndex="0">
+                                        <ComboBoxItem Content="Раз в сутки перед запуском игры"/>
+                                    </ComboBox>
+                                </Grid>
+
+                                <Grid Margin="0,0,0,8">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="110"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Text="Максимальный размер:" Style="{StaticResource SettingsLabelStyle}"/>
+                                    <StackPanel Grid.Column="1" Orientation="Horizontal">
+                                        <TextBox Width="70"
+                                                 Text="2000"
+                                                 Style="{StaticResource SettingsTextBoxStyle}"/>
+                                        <TextBlock Text="МБ"
+                                                   FontFamily="Arial"
+                                                   FontSize="11"
+                                                   VerticalAlignment="Center"
+                                                   Margin="5,0"/>
+                                        <TextBlock Text="?"
+                                                   Foreground="#2B95D7"
+                                                   FontFamily="Arial"
+                                                   FontSize="13"
+                                                   FontWeight="Bold"
+                                                   VerticalAlignment="Center"/>
+                                    </StackPanel>
+                                </Grid>
+
+                                <Grid Margin="0,0,0,10">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="110"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Text="Время хранения бэкапа:" Style="{StaticResource SettingsLabelStyle}"/>
+                                    <StackPanel Grid.Column="1" Orientation="Horizontal">
+                                        <TextBox Width="60"
+                                                 Text="30"
+                                                 Style="{StaticResource SettingsTextBoxStyle}"/>
+                                        <TextBlock Text="Дней"
+                                                   FontFamily="Arial"
+                                                   FontSize="11"
+                                                   VerticalAlignment="Center"
+                                                   Margin="5,0"/>
+                                        <TextBlock Text="?"
+                                                   Foreground="#2B95D7"
+                                                   FontFamily="Arial"
+                                                   FontSize="13"
+                                                   FontWeight="Bold"
+                                                   VerticalAlignment="Center"/>
+                                    </StackPanel>
+                                </Grid>
+
+                                <Button Content="Получить лог для поддержки"
+                                        Width="258"
+                                        HorizontalAlignment="Left"
+                                        Style="{StaticResource SettingsOutlineButtonStyle}"/>
+                            </StackPanel>
+
+                            <StackPanel Grid.Row="1"
+                                        Orientation="Horizontal"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center">
+                                <Button Content="Полный сброс"
+                                        Width="130"
+                                        Style="{StaticResource SettingsRedButtonStyle}"
+                                        Click="SettingsResetAll_Click"/>
+                                <Button Content="По умолчанию"
+                                        Width="118"
+                                        Margin="14,0,0,0"
+                                        Style="{StaticResource SettingsGreenButtonStyle}"
+                                        Click="SettingsDefault_Click"/>
+                                <Button Content="Сохранить"
+                                        Width="118"
+                                        Margin="14,0,0,0"
+                                        Style="{StaticResource SettingsOrangeButtonStyle}"
+                                        Click="SettingsSave_Click"/>
+                            </StackPanel>
+                        </Grid>
+
+                        <Grid x:Name="SettingsPrivacyTab" Visibility="Collapsed">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="40"/>
+                            </Grid.RowDefinitions>
+
+                            <StackPanel Margin="18,14,18,0">
+                                <Grid Margin="0,0,0,10">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="110"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Text="Аналитика:" Style="{StaticResource SettingsLabelStyle}"/>
+                                    <CheckBox Grid.Column="1"
+                                              Content="Отключить отправление анонимной статистики"
+                                              Style="{StaticResource SettingsCheckBoxStyle}"/>
+                                </Grid>
+
+                                <Grid Margin="0,0,0,10">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="110"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Text="Защитник:" Style="{StaticResource SettingsLabelStyle}"/>
+                                    <StackPanel Grid.Column="1" Orientation="Horizontal">
+                                        <CheckBox Content="Защищать вас с помощью TLauncher Guard"
+                                                  IsChecked="True"
+                                                  Style="{StaticResource SettingsCheckBoxStyle}"/>
+                                        <TextBlock Text="?"
+                                                   Foreground="#2B95D7"
+                                                   FontFamily="Arial"
+                                                   FontSize="13"
+                                                   FontWeight="Bold"
+                                                   VerticalAlignment="Center"
+                                                   Margin="10,0,0,0"/>
+                                    </StackPanel>
+                                </Grid>
+
+                                <Grid Margin="0,0,0,10">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="110"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Text="Discord:" Style="{StaticResource SettingsLabelStyle}"/>
+                                    <CheckBox Grid.Column="1"
+                                              Content="Отображать статус лаунчера в Discord"
+                                              IsChecked="True"
+                                              Style="{StaticResource SettingsCheckBoxStyle}"/>
+                                </Grid>
+
+                                <Grid Margin="0,0,0,10">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="110"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Text="Рекомендации:" Style="{StaticResource SettingsLabelStyle}"/>
+                                    <CheckBox Grid.Column="1"
+                                              Content="Добавлять иногда сервера в Minecraft"
+                                              IsChecked="True"
+                                              Style="{StaticResource SettingsCheckBoxStyle}"/>
+                                </Grid>
+
+                                <Grid Margin="0,0,0,10">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="110"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Text="Собранная аналитика:"
+                                               Style="{StaticResource SettingsLabelStyle}"
+                                               VerticalAlignment="Top"
+                                               Margin="0,4,0,0"/>
+                                    <TextBlock Grid.Column="1"
+                                               Text="TLauncher не собирает конфиденциальную или личную информацию с вашего компьютера. Собранная анонимная аналитическая информация касается только использования нашей программы и не содержит информации для идентификации человека. Аналитика собирается в соответствии с нашей «Политикой Конфиденциальности», для улучшения качества программы. Вы можете запросить удаление информации с наших серверов."
+                                               Foreground="#222222"
+                                               FontFamily="Arial"
+                                               FontSize="10"
+                                               TextWrapping="Wrap"/>
+                                </Grid>
+
+                                <Button Content="Запросить удаление аналитики"
+                                        Width="250"
+                                        HorizontalAlignment="Center"
+                                        Style="{StaticResource SettingsRedButtonStyle}"/>
+
+                                <Grid Margin="0,16,0,0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="110"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Text="Документы:" Style="{StaticResource SettingsLabelStyle}"/>
+                                    <TextBlock Grid.Column="1"
+                                               Text="Политика конфиденциальности TLauncher"
+                                               Foreground="#7DB9DE"
+                                               FontFamily="Arial"
+                                               FontSize="10"/>
+                                </Grid>
+
+                                <Button Content="О программе"
+                                        Width="238"
+                                        HorizontalAlignment="Center"
+                                        Margin="0,12,0,0"
+                                        Style="{StaticResource SettingsGreenButtonStyle}"/>
+                            </StackPanel>
+
+                            <StackPanel Grid.Row="1"
+                                        Orientation="Horizontal"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center">
+                                <Button Content="По умолчанию"
+                                        Width="118"
+                                        Style="{StaticResource SettingsGreenButtonStyle}"
+                                        Click="SettingsDefault_Click"/>
+                                <Button Content="Сохранить"
+                                        Width="118"
+                                        Margin="16,0,0,0"
+                                        Style="{StaticResource SettingsOrangeButtonStyle}"
+                                        Click="SettingsSave_Click"/>
+                            </StackPanel>
+                        </Grid>
+                    </Grid>
+                </Grid>
+            </Border>
+        </Grid>
         </Grid>
     </Border>
 </Window>
+
