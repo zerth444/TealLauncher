@@ -190,8 +190,8 @@
         </Style>
 
         <Style x:Key="IconHoverButtonStyle" TargetType="Button">
-            <Setter Property="Width" Value="40"/>
-            <Setter Property="Height" Value="40"/>
+            <Setter Property="Width" Value="36"/>
+            <Setter Property="Height" Value="36"/>
             <Setter Property="Background" Value="Transparent"/>
             <Setter Property="BorderThickness" Value="0"/>
             <Setter Property="Padding" Value="0"/>
@@ -568,7 +568,7 @@
                         HorizontalAlignment="Left"
                         VerticalAlignment="Top"
                         Margin="28,0,0,0"
-                        Background="#D8B555">
+                        Background="#679ED2">
                     <Grid>
                         <Button Content="✕"
                                 Width="24"
@@ -610,19 +610,19 @@
                                 </Canvas>
                             </Viewbox>
 
-                            <TextBlock Text="НЕ ЗНАЕШЬ ГДЕ ИГРАТЬ?"
+                            <TextBlock Text="ПОЛНОСТЬЮ БЕСПЛАТНЫЙ"
                                        Foreground="#2B2B2B"
                                        FontSize="12"
                                        FontWeight="Bold"
                                        TextWrapping="Wrap"
                                        Margin="0,8,0,0"/>
-                            <TextBlock Text="ВЫБЕРИ СЕРВЕР ИЗ СПИСКА И ЗАХОДИ!"
+                            <TextBlock Text="OPEN-SOURCE ЛАУНЧЕР"
                                        Foreground="#2B2B2B"
                                        FontSize="12"
                                        FontWeight="Bold"
                                        TextWrapping="Wrap"
                                        Margin="0,8,0,0"/>
-                            <TextBlock Text="Мы отбираем сервера тщательно, только лучшие ТОП сервера!"
+                            <TextBlock Text="Без рекламы, скрытых платежей и навязанных сервисов. Только игра и удобный запуск."
                                        Foreground="#2B2B2B"
                                        FontSize="11"
                                        TextWrapping="Wrap"
@@ -728,7 +728,7 @@
                                     <ColumnDefinition Width="*"/>
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
-                                <Border Background="#71A94C"
+                                <Border Background="#0C5AA6"
                                         Margin="0,0,1,0">
                                     <TextBlock Text="Ещё сервера"
                                                Foreground="#FFFFFF"
@@ -737,7 +737,7 @@
                                                VerticalAlignment="Center"/>
                                 </Border>
                                 <Border Grid.Column="1"
-                                        Background="#F57C00"
+                                        Background="#408AD2"
                                         Margin="1,0">
                                     <TextBlock Text="Добавить сервер"
                                                Foreground="#FFFFFF"
@@ -746,7 +746,7 @@
                                                VerticalAlignment="Center"/>
                                 </Border>
                                 <Border Grid.Column="2"
-                                        Background="#F57C00"
+                                        Background="#679ED2"
                                         Margin="1,0,0,0">
                                     <TextBlock Text="Добавить сервер бесплатно"
                                                Foreground="#FFFFFF"
@@ -761,7 +761,7 @@
             </Grid>
 
             <!-- НИЖНЯЯ ПАНЕЛЬ -->
-            <Grid Grid.Row="2" Grid.ColumnSpan="2" Background="#71A94C">
+            <Grid Grid.Row="2" Grid.ColumnSpan="2" Background="#04396C">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="294"/>
                     <ColumnDefinition Width="275"/>
@@ -896,7 +896,7 @@
                         HorizontalAlignment="Left"
                         VerticalAlignment="Top"
                         Margin="0,10,0,0"
-                        Background="#ECC13F"
+                        Background="#408AD2"
                         Foreground="#FFFFFF"
                         FontSize="18"
                         FontWeight="Bold"
@@ -919,28 +919,28 @@
                             VerticalAlignment="Center"
                             Margin="0,0,31,0">
                     <Button Style="{StaticResource IconHoverButtonStyle}"
-                            Margin="0,0,18,0"
+                            Margin="0,0,20,0"
                             ToolTip="Modrinth">
                         <Image Source="Assets/modrinth-logo-white.png"
-                               Width="28"
-                               Height="28"
+                               Width="24"
+                               Height="24"
                                Stretch="Uniform"/>
                     </Button>
 
                     <Button Style="{StaticResource IconHoverButtonStyle}"
-                            Margin="0,0,18,0"
+                            Margin="0,0,20,0"
                             ToolTip="Обновить">
                         <TextBlock Text="&#xE72C;"
                                    FontFamily="Segoe MDL2 Assets"
                                    Foreground="#FFFFFF"
-                                   FontSize="28"/>
+                                   FontSize="24"/>
                     </Button>
 
                     <Button Style="{StaticResource IconHoverButtonStyle}"
-                            Margin="0,0,18,0"
+                            Margin="0,0,20,0"
                             ToolTip="Папка игры">
-                        <Path Width="28"
-                              Height="28"
+                        <Path Width="24"
+                              Height="24"
                               Stretch="Uniform"
                               Stroke="#FFFFFF"
                               StrokeThickness="2"
@@ -954,7 +954,7 @@
                         <TextBlock Text="&#xE713;"
                                    FontFamily="Segoe MDL2 Assets"
                                    Foreground="#FFFFFF"
-                                   FontSize="28"/>
+                                   FontSize="24"/>
                     </Button>
                 </StackPanel>
             </Grid>
