@@ -11,8 +11,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Resource Include="Assets\launcher-background.png" />
-    <Resource Include="Assets\premium-banner.png" />
+    <Resource Include="Assets\background-launcher.png" />
+    <Resource Include="Assets\modrinth-logo-white.png" />
   </ItemGroup>
 
 </Project>
