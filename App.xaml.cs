@@ -1,6 +1,6 @@
 using System.Windows;
 
-namespace TLauncherRemake;
+namespace TealLauncher;
 
 public partial class App : Application
 {

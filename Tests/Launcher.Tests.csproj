@@ -7,5 +7,5 @@
     <Nullable>enable</Nullable>
     <AssemblyName>Launcher.Tests</AssemblyName>
   </PropertyGroup>
-  <ItemGroup><ProjectReference Include="..\TLauncherRemake.csproj" /></ItemGroup>
+  <ItemGroup><ProjectReference Include="..\TealLauncher.csproj" /></ItemGroup>
 </Project>

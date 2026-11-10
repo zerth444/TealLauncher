@@ -5,7 +5,7 @@ using System.Windows.Data;
 using CmlLib.Core;
 using CmlLib.Core.VersionMetadata;
 
-namespace TLauncherRemake;
+namespace TealLauncher;
 
 public partial class MainWindow
 {

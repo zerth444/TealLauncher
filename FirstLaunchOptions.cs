@@ -2,7 +2,7 @@ using System.IO;
 using System.IO.Compression;
 using CmlLib.Core.Version;
 
-namespace TLauncherRemake;
+namespace TealLauncher;
 
 public static class FirstLaunchOptions
 {

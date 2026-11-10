@@ -1,6 +1,6 @@
 using System.IO;
 using System.IO.Compression;
-using TLauncherRemake;
+using TealLauncher;
 using CmlLib.Core.VersionMetadata;
 
 internal static class SettingsTests

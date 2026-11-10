@@ -1,7 +1,7 @@
-<Window x:Class="TLauncherRemake.CreateInstanceWindow"
+<Window x:Class="TealLauncher.CreateInstanceWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Icon="pack://application:,,,/TLauncherRemake;component/Assets/launcher.ico"
+        Icon="pack://application:,,,/TealLauncher;component/Assets/launcher.ico"
         Title="Новая сборка" Width="560" SizeToContent="Height"
         MinWidth="520" ResizeMode="NoResize" WindowStartupLocation="CenterOwner"
         Background="{DynamicResource PanelDialog}" Foreground="{DynamicResource PanelText}" FontFamily="{DynamicResource Font.SegoeUI}" FontSize="13">

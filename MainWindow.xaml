@@ -1,9 +1,9 @@
-<Window x:Class="TLauncherRemake.MainWindow"
+<Window x:Class="TealLauncher.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:local="clr-namespace:TLauncherRemake"
+        xmlns:local="clr-namespace:TealLauncher"
         xmlns:shell="clr-namespace:System.Windows.Shell;assembly=PresentationFramework"
-        Icon="pack://application:,,,/TLauncherRemake;component/Assets/launcher.ico"
+        Icon="pack://application:,,,/TealLauncher;component/Assets/launcher.ico"
         Title="Teal Launcher"
         Width="1066"
         Height="694"
@@ -1366,7 +1366,7 @@
                         <Grid x:Name='SettingsPrivacyTab' Visibility='Collapsed'>
                             <StackPanel Margin='22'>
                                 <TextBlock Text='Конфиденциальность' FontSize='18' FontWeight='Bold' Margin='0,0,0,16'/>
-                                <TextBlock Text='У лаунчера нет собственной отправки аналитики, TLauncher Guard, добавления серверов или интеграции со статусом Discord. Прежние переключатели этих функций были нерабочими и удалены.' TextWrapping='Wrap' Margin='0,0,0,12'/>
+                                <TextBlock Text='У лаунчера нет собственной отправки аналитики, добавления серверов или интеграции со статусом Discord. Прежние переключатели этих функций были нерабочими и удалены.' TextWrapping='Wrap' Margin='0,0,0,12'/>
                                 <TextBlock Text='Никнейм и настройки хранятся локально. Для каталога и скачивания файлов используются сервисы Mojang, Modrinth и выбранных загрузчиков.' TextWrapping='Wrap' Foreground='{DynamicResource PanelMuted}'/>
                             </StackPanel>
                         </Grid>

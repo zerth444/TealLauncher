@@ -1,7 +1,7 @@
 using System.IO;
 using System.Windows.Threading;
 
-namespace TLauncherRemake;
+namespace TealLauncher;
 
 public partial class MainWindow
 {

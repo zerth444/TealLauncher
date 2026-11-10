@@ -3,7 +3,7 @@ using System.Text.Json;
 using System.Xml.Linq;
 using CmlLib.Core.Installer.NeoForge;
 
-namespace TLauncherRemake;
+namespace TealLauncher;
 
 public partial class MainWindow
 {

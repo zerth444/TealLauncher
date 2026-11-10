@@ -6,7 +6,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Security.Cryptography;
 
-namespace TLauncherRemake;
+namespace TealLauncher;
 
 public sealed record TransferProgress(string File, long Received, long Total, string Activity);
 

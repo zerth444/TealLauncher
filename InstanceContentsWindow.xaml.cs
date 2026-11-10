@@ -2,7 +2,7 @@ using System.IO;
 using System.Windows;
 using System.Windows.Controls;
 
-namespace TLauncherRemake;
+namespace TealLauncher;
 
 public partial class InstanceContentsWindow : Window
 {

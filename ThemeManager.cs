@@ -1,6 +1,6 @@
 using System.Windows;
 
-namespace TLauncherRemake;
+namespace TealLauncher;
 
 /// <summary>Application resources also update open dialogs and existing control templates.</summary>
 internal static class ThemeManager
@@ -8,7 +8,7 @@ internal static class ThemeManager
     public static void Apply(bool legacy)
     {
         if (Application.Current is not { } app) return;
-        var source = new Uri($"/TLauncherRemake;component/Themes/{(legacy ? "Legacy" : "Modern")}.xaml", UriKind.Relative);
+        var source = new Uri($"/TealLauncher;component/Themes/{(legacy ? "Legacy" : "Modern")}.xaml", UriKind.Relative);
         var dictionaries = app.Resources.MergedDictionaries;
         if (dictionaries.Count == 1 && dictionaries[0].Source == source) return;
         var next = new ResourceDictionary { Source = source };

@@ -20,6 +20,6 @@ Teal Launcher — независимый лаунчер для Minecraft: Java E
 
 ## Исходный код
 
-Проект написан на C# и WPF с использованием .NET 10. Для сборки установите .NET 10 SDK и выполните `dotnet build TLauncherRemake.csproj -c Release` в Windows.
+Проект написан на C# и WPF с использованием .NET 10. Для сборки установите .NET 10 SDK и выполните `dotnet build TealLauncher.csproj -c Release` в Windows.
 
 Исходный код доступен по [лицензии MIT](LICENSE). Автор исходного кода — Zerth. Права на Minecraft, сторонние компоненты и материалы принадлежат соответствующим правообладателям.

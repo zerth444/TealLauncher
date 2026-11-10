@@ -1,7 +1,7 @@
 using System.IO;
 using System.Text.Json;
 
-namespace TLauncherRemake;
+namespace TealLauncher;
 
 public sealed class LauncherPreferences
 {

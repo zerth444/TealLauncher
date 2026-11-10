@@ -1,7 +1,7 @@
 using System.IO;
 using CmlLib.Core.Installer.Forge.Versions;
 
-namespace TLauncherRemake;
+namespace TealLauncher;
 
 public partial class MainWindow
 {

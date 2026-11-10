@@ -1,7 +1,7 @@
 using System.Diagnostics;
 using System.IO;
 
-namespace TLauncherRemake;
+namespace TealLauncher;
 
 public partial class MainWindow
 {

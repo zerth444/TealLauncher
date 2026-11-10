@@ -6,8 +6,8 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <UseWPF>true</UseWPF>
-    <RootNamespace>TLauncherRemake</RootNamespace>
-    <AssemblyName>TLauncherRemake</AssemblyName>
+    <RootNamespace>TealLauncher</RootNamespace>
+    <AssemblyName>TealLauncher</AssemblyName>
     <ApplicationIcon>Assets\launcher.ico</ApplicationIcon>
   </PropertyGroup>
 

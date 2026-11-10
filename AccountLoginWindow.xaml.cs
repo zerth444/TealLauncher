@@ -2,7 +2,7 @@ using System.Windows;
 using CmlLib.Core.Auth;
 using CmlLib.Core.Auth.Microsoft;
 
-namespace TLauncherRemake;
+namespace TealLauncher;
 
 public partial class AccountLoginWindow : Window
 {

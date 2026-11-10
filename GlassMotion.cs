@@ -2,7 +2,7 @@ using System.Windows;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 
-namespace TLauncherRemake;
+namespace TealLauncher;
 
 public static class GlassMotion
 {

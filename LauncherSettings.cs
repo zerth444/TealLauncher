@@ -1,6 +1,6 @@
 using System.IO;
 
-namespace TLauncherRemake;
+namespace TealLauncher;
 
 public sealed class LauncherSettings
 {

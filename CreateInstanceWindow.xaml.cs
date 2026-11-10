@@ -8,7 +8,7 @@ using CmlLib.Core;
 using CmlLib.Core.Installer.Forge;
 using CmlLib.Core.Installer.NeoForge;
 
-namespace TLauncherRemake;
+namespace TealLauncher;
 
 public partial class CreateInstanceWindow : Window
 {

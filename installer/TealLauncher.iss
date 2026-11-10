@@ -1,5 +1,5 @@
 ﻿#define AppName "Teal Launcher"
-#define AppExe "TLauncherRemake.exe"
+#define AppExe "TealLauncher.exe"
 [Setup]
 AppId={{9C2C37EC-6DB0-46A3-8E7C-3D52A80B2C10}
 AppName={#AppName}
@@ -29,7 +29,7 @@ english.DesktopIcon=Create a desktop shortcut
 [Tasks]
 Name: "desktopicon"; Description: "{cm:DesktopIcon}"; Flags: unchecked
 [Files]
-Source: "..\bin\InstallerPublish\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "..\bin\InstallerPublishTeal\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: "LICENSE.txt"; DestDir: "{app}"; Flags: ignoreversion
 Source: "agreement-ru.txt"; DestDir: "{app}"; Flags: ignoreversion
 Source: "agreement-en.txt"; DestDir: "{app}"; Flags: ignoreversion
@@ -63,3 +63,4 @@ procedure CurPageChanged(CurPageID: Integer);
 begin
   if CurPageID = wpLicense then WizardForm.NextButton.Enabled := AcceptCheck.Checked;
 end;
+

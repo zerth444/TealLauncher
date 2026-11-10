@@ -2,7 +2,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 
-namespace TLauncherRemake;
+namespace TealLauncher;
 
 public sealed class ProjectVersionWindow : Window
 {

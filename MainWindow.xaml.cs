@@ -21,7 +21,7 @@ using CmlLib.Core.Version;
 using CmlLib.Core.VersionMetadata;
 using Microsoft.Win32;
 
-namespace TLauncherRemake;
+namespace TealLauncher;
 
 public partial class MainWindow : Window
 {

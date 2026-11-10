@@ -7,7 +7,7 @@ using System.Windows;
 using CmlLib.Core;
 using CmlLib.Core.Installer.Forge;
 using CmlLib.Core.Installer.NeoForge;
-using TLauncherRemake;
+using TealLauncher;
 
 internal static class Program
 {
