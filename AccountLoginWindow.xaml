@@ -7,7 +7,7 @@
         Height="180"
         WindowStartupLocation="CenterOwner"
         ResizeMode="NoResize"
-        Background="#F5F5F5">
+        Background="{DynamicResource Brush.F5F5F5}" FontFamily="{DynamicResource Font.Ui}">
     <Grid Margin="20">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -17,16 +17,16 @@
         </Grid.RowDefinitions>
 
         <TextBlock Text="Вход в аккаунт Minecraft"
-                   FontFamily="Arial"
+                   FontFamily="{DynamicResource Font.Arial}"
                    FontSize="18"
                    FontWeight="Bold"
-                   Foreground="#1E88C7"/>
+                   Foreground="{DynamicResource Brush.1E88C7}"/>
 
         <TextBlock Grid.Row="1"
                    Text="Войдите в аккаунт Microsoft, к которому привязан Minecraft."
-                   FontFamily="Arial"
+                   FontFamily="{DynamicResource Font.Arial}"
                    FontSize="11"
-                   Foreground="#333333"
+                   Foreground="{DynamicResource Brush.333333}"
                    TextWrapping="Wrap"
                    Margin="0,10,0,14"/>
 
@@ -36,9 +36,9 @@
                     Content="Войти через Microsoft"
                     Width="180"
                     Height="32"
-                    Background="#408AD2"
-                    Foreground="#FFFFFF"
-                    FontFamily="Arial"
+                    Background="{DynamicResource Brush.408AD2}"
+                    Foreground="{DynamicResource Brush.FFFFFF}"
+                    FontFamily="{DynamicResource Font.Arial}"
                     FontSize="11"
                     BorderThickness="0"
                     Cursor="Hand"
@@ -47,9 +47,9 @@
                     Width="90"
                     Height="32"
                     Margin="10,0,0,0"
-                    Background="#679ED2"
-                    Foreground="#FFFFFF"
-                    FontFamily="Arial"
+                    Background="{DynamicResource Brush.679ED2}"
+                    Foreground="{DynamicResource Brush.FFFFFF}"
+                    FontFamily="{DynamicResource Font.Arial}"
                     FontSize="11"
                     BorderThickness="0"
                     Cursor="Hand"
@@ -58,9 +58,9 @@
 
         <TextBlock x:Name="StatusText"
                    Grid.Row="3"
-                   FontFamily="Arial"
+                   FontFamily="{DynamicResource Font.Arial}"
                    FontSize="10"
-                   Foreground="#666666"
+                   Foreground="{DynamicResource Brush.666666}"
                    TextWrapping="Wrap"
                    VerticalAlignment="Bottom"/>
     </Grid>

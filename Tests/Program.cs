@@ -58,6 +58,7 @@ internal static class Program
     static async Task Run(string[] args)
     {
         Directory.CreateDirectory(Root);
+        if (args.Contains("--themes")) { await SettingsTests.Run(Root); ThemeTests.Run(Root); return; }
         await SettingsTests.Run(Root);
         if (!args.Contains("--sodiumplus")) await DownloaderTests.Run(Root);
         string toggles = Path.Combine(Root, "toggles-" + Guid.NewGuid().ToString("N"));

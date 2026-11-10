@@ -70,6 +70,7 @@ public partial class MainWindow
     private void SetProjectDescription(string markdown)
     {
         var document = new FlowDocument { FontFamily = new FontFamily("Segoe UI"), FontSize = 13, PagePadding = new Thickness(0) };
+        document.SetResourceReference(FlowDocument.ForegroundProperty, "PanelText");
         foreach (string source in markdown.Replace("\r", "").Split('\n'))
         {
             if (string.IsNullOrWhiteSpace(source)) continue;

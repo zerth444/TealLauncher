@@ -15,6 +15,7 @@ public partial class MainWindow
     private void InitializeSettings()
     {
         _settings = LauncherPreferences.Load(_preferencesPath).Settings;
+        ThemeManager.Apply(_settings.LegacyDesign);
         _minecraftPath = new MinecraftPath(_settings.GameDirectory);
         ApplySettingsControls(_settings);
         _settingsInitialized = true;
@@ -38,6 +39,7 @@ public partial class MainWindow
         SettingsOldReleasesCheckBox.IsChecked = s.ShowOldReleases; SettingsBetaCheckBox.IsChecked = s.ShowBeta;
         SettingsAlphaCheckBox.IsChecked = s.ShowAlpha; SettingsRussianCheckBox.IsChecked = s.RussianOnFirstLaunch;
         SettingsLaunchBehaviorCombo.SelectedIndex = s.MinimizeOnLaunch ? 1 : 0;
+        SettingsLegacyDesignCheckBox.IsChecked = s.LegacyDesign;
         SettingsParallelCombo.SelectedIndex = s.ParallelDownloads == 2 ? 0 : s.ParallelDownloads == 8 ? 2 : 1;
         SettingsBackupsCheckBox.IsChecked = s.Backups;
         SettingsBackupLimitTextBox.Text = s.BackupLimitMb.ToString(); SettingsBackupDaysTextBox.Text = s.BackupRetentionDays.ToString();
@@ -104,6 +106,7 @@ public partial class MainWindow
             ShowOldReleases = SettingsOldReleasesCheckBox.IsChecked == true, ShowBeta = SettingsBetaCheckBox.IsChecked == true,
             ShowAlpha = SettingsAlphaCheckBox.IsChecked == true, RussianOnFirstLaunch = SettingsRussianCheckBox.IsChecked == true,
             MinimizeOnLaunch = SettingsLaunchBehaviorCombo.SelectedIndex == 1,
+            LegacyDesign = SettingsLegacyDesignCheckBox.IsChecked == true,
             ParallelDownloads = SettingsParallelCombo.SelectedIndex switch { 0 => 2, 2 => 8, _ => 4 },
             Backups = SettingsBackupsCheckBox.IsChecked == true, BackupLimitMb = limit, BackupRetentionDays = days
         };
@@ -115,6 +118,7 @@ public partial class MainWindow
         bool changed = !string.Equals(next.GameDirectory, _minecraftPath.BasePath, StringComparison.OrdinalIgnoreCase);
         if (changed && (_isLaunching || _gameProcess is { HasExited: false })) throw new InvalidOperationException("Закройте игру перед сменой папки Minecraft.");
         _settings = next;
+        ThemeManager.Apply(next.LegacyDesign);
         if (changed) { _minecraftPath = new MinecraftPath(next.GameDirectory); InitializeMinecraftLauncher(); await LoadMinecraftVersionsAsync(); }
         RefreshVersionFilter(); PersistSettings(); SettingsOverlay.Visibility = Visibility.Collapsed;
     }

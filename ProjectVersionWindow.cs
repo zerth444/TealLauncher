@@ -18,7 +18,9 @@ public sealed class ProjectVersionWindow : Window
         Title = project.Title + " — выбор версии";
         Width = 650; Height = 520; MinWidth = 560; MinHeight = 400;
         WindowStartupLocation = WindowStartupLocation.CenterOwner;
-        Background = new SolidColorBrush(Color.FromRgb(245, 245, 245));
+        SetResourceReference(BackgroundProperty, "PanelDialog");
+        SetResourceReference(ForegroundProperty, "PanelText");
+        SetResourceReference(FontFamilyProperty, "Font.Ui");
         _versions = versions.Where(v => v.Files.Count > 0
             && (type == "modpack" ? v.Files.Any(f => f.Filename.EndsWith(".mrpack", StringComparison.OrdinalIgnoreCase))
                 : instance != null && MainWindow.SelectCompatibleVersion(new[] { v }, instance, type) != null))
@@ -28,26 +30,37 @@ public sealed class ProjectVersionWindow : Window
             grid.RowDefinitions.Add(new RowDefinition { Height = height });
         void Add(UIElement item, int row) { Grid.SetRow(item, row); grid.Children.Add(item); }
         Add(new TextBlock { Text = project.Title, FontSize = 21, FontWeight = FontWeights.Bold, TextWrapping = TextWrapping.Wrap }, 0);
-        Add(new TextBlock
+        var description = new TextBlock
         {
             Text = type == "modpack" ? project.Description + "\nСборка будет установлена отдельно, со своей версией Minecraft и загрузчиком."
                 : $"Установка в «{instance?.Name}»: Minecraft {instance?.Version}, {instance?.ModLoader}. Показаны только совместимые версии.",
-            TextWrapping = TextWrapping.Wrap, Foreground = Brushes.DimGray, Margin = new Thickness(0, 8, 0, 14)
-        }, 1);
+            TextWrapping = TextWrapping.Wrap, Margin = new Thickness(0, 8, 0, 14)
+        };
+        description.SetResourceReference(TextBlock.ForegroundProperty, "PanelMuted");
+        Add(description, 1);
         var filter = new DockPanel { Margin = new Thickness(0, 0, 0, 12) };
         filter.Children.Add(new TextBlock { Text = "Minecraft:", Width = 100, VerticalAlignment = VerticalAlignment.Center });
         _game.MinHeight = 30;
+        _game.SetResourceReference(StyleProperty, "PanelComboStyle");
         _game.Items.Add("Все версии");
         foreach (string game in _versions.SelectMany(v => v.GameVersions).Distinct()) _game.Items.Add(game);
         _game.SelectedIndex = 0;
         _game.SelectionChanged += (_, _) => Refresh();
         filter.Children.Add(_game);
         Add(filter, 2);
-        _list.BorderBrush = Brushes.LightGray;
+        _list.SetResourceReference(Control.BorderBrushProperty, "SectionBorder");
+        _list.SetResourceReference(Control.BackgroundProperty, "PanelInput");
+        _list.SetResourceReference(Control.ForegroundProperty, "PanelText");
         _list.SelectionChanged += (_, _) => _install.IsEnabled = _list.SelectedItem is VersionChoice;
         Add(_list, 3);
         var buttons = new StackPanel { Orientation = Orientation.Horizontal, HorizontalAlignment = HorizontalAlignment.Right, Margin = new Thickness(0, 16, 0, 0) };
+        _install.SetResourceReference(StyleProperty, "SectionButtonStyle");
+        _install.SetResourceReference(Control.BackgroundProperty, "SectionActionBrush");
+        _install.SetResourceReference(Control.ForegroundProperty, "Brush.White");
         var cancel = new Button { Content = "Отмена", MinWidth = 100, Padding = new Thickness(14, 7, 14, 7), Margin = new Thickness(10, 0, 0, 0), IsCancel = true };
+        cancel.SetResourceReference(StyleProperty, "SectionButtonStyle");
+        cancel.SetResourceReference(Control.BackgroundProperty, "PanelSecondary");
+        cancel.SetResourceReference(Control.ForegroundProperty, "PanelText");
         _install.Click += (_, _) => { if (_list.SelectedItem is VersionChoice choice) { SelectedVersion = choice.Version; DialogResult = true; } };
         buttons.Children.Add(_install); buttons.Children.Add(cancel);
         Add(buttons, 4);

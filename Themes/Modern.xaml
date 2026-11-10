@@ -1,0 +1,777 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:sys="clr-namespace:System;assembly=System.Runtime">
+<Color x:Key="Color.B7C1C8">#B7C1C8</Color>
+<SolidColorBrush x:Key="Brush.B7C1C8" Color="#B7C1C8"/>
+<Color x:Key="Color.White">White</Color>
+<SolidColorBrush x:Key="Brush.White" Color="White"/>
+<Color x:Key="Color.3B7FA3">#3B7FA3</Color>
+<SolidColorBrush x:Key="Brush.3B7FA3" Color="#55FFFFFF"/>
+<Color x:Key="Color.C6E9FA">#C6E9FA</Color>
+<SolidColorBrush x:Key="Brush.C6E9FA" Color="#C6E9FA"/>
+<Color x:Key="Color.FFFFFF">#FFFFFF</Color>
+<SolidColorBrush x:Key="Brush.FFFFFF" Color="#FFFFFF"/>
+<Color x:Key="Color.8E8E8E">#CBD7E5</Color>
+<SolidColorBrush x:Key="Brush.8E8E8E" Color="#CBD7E5"/>
+<Color x:Key="Color.222222">#192D43</Color>
+<SolidColorBrush x:Key="Brush.222222" Color="#192D43"/>
+<Color x:Key="Color.A6A6A6">#A6A6A6</Color>
+<SolidColorBrush x:Key="Brush.A6A6A6" Color="#A6A6A6"/>
+<Color x:Key="Color.278BC2">#247DAA</Color>
+<LinearGradientBrush x:Key="Brush.278BC2" StartPoint="0,0" EndPoint="1,1"><GradientStop Color="#3691c0" Offset="0"/><GradientStop Color="#247DAA" Offset="1"/></LinearGradientBrush>
+<Color x:Key="Color.333333">#22354B</Color>
+<SolidColorBrush x:Key="Brush.333333" Color="#22354B"/>
+<Color x:Key="Color.E3E3E3">#E3E3E3</Color>
+<SolidColorBrush x:Key="Brush.E3E3E3" Color="#E3E3E3"/>
+<Color x:Key="Color.CFCFCF">#CFCFCF</Color>
+<SolidColorBrush x:Key="Brush.CFCFCF" Color="#CFCFCF"/>
+<Color x:Key="Color.E81123">#E81123</Color>
+<SolidColorBrush x:Key="Brush.E81123" Color="#E81123"/>
+<Color x:Key="Color.C50F1F">#C50F1F</Color>
+<SolidColorBrush x:Key="Brush.C50F1F" Color="#C50F1F"/>
+<Color x:Key="Color.5DA2CF">#244C70</Color>
+<SolidColorBrush x:Key="Brush.5DA2CF" Color="#00FFFFFF"/>
+<Color x:Key="Color.6FB7E3">#6FB7E3</Color>
+<SolidColorBrush x:Key="Brush.6FB7E3" Color="#6FB7E3"/>
+<Color x:Key="Color.4A8CB0">#4A8CB0</Color>
+<SolidColorBrush x:Key="Brush.4A8CB0" Color="#4A8CB0"/>
+<Color x:Key="Color.7CB342">#7CB342</Color>
+<SolidColorBrush x:Key="Brush.7CB342" Color="#7CB342"/>
+<Color x:Key="Color.689F38">#689F38</Color>
+<SolidColorBrush x:Key="Brush.689F38" Color="#689F38"/>
+<Color x:Key="Color.33FFFFFF">#33FFFFFF</Color>
+<SolidColorBrush x:Key="Brush.33FFFFFF" Color="#00FFFFFF"/>
+<Color x:Key="Color.55FFFFFF">#55FFFFFF</Color>
+<SolidColorBrush x:Key="Brush.55FFFFFF" Color="#55FFFFFF"/>
+<Color x:Key="Color.F7F7F7">#F7F7F7</Color>
+<SolidColorBrush x:Key="Brush.F7F7F7" Color="#F7F7F7"/>
+<Color x:Key="Color.BDBDBD">#BDBDBD</Color>
+<SolidColorBrush x:Key="Brush.BDBDBD" Color="#BDBDBD"/>
+<Color x:Key="Color.408AD2">#287AB4</Color>
+<LinearGradientBrush x:Key="Brush.408AD2" StartPoint="0,0" EndPoint="1,1"><GradientStop Color="#3a8eca" Offset="0"/><GradientStop Color="#287AB4" Offset="1"/></LinearGradientBrush>
+<Color x:Key="Color.679ED2">#347CA9</Color>
+<LinearGradientBrush x:Key="Brush.679ED2" StartPoint="0,0" EndPoint="1,1"><GradientStop Color="#4690bf" Offset="0"/><GradientStop Color="#347CA9" Offset="1"/></LinearGradientBrush>
+<Color x:Key="Color.0C5AA6">#245B85</Color>
+<SolidColorBrush x:Key="Brush.0C5AA6" Color="#245B85"/>
+<Color x:Key="Color.2E8DC5">#234D70</Color>
+<SolidColorBrush x:Key="Brush.2E8DC5" Color="#F234516D"/>
+<Color x:Key="Color.EAF7FF">#EAF7FF</Color>
+<SolidColorBrush x:Key="Brush.EAF7FF" Color="#EDF5FF"/>
+<Color x:Key="Color.7A7A7A">#7A7A7A</Color>
+<SolidColorBrush x:Key="Brush.7A7A7A" Color="#7A7A7A"/>
+<Color x:Key="Color.B8B8B8">#D4DFED</Color>
+<SolidColorBrush x:Key="Brush.B8B8B8" Color="#D4DFED"/>
+<Color x:Key="Color.0E2A45">#142A43</Color>
+<SolidColorBrush x:Key="Brush.0E2A45" Color="#162C45"/>
+<Color x:Key="Color.F5F5F5">#F3F7FC</Color>
+<SolidColorBrush x:Key="Brush.F5F5F5" Color="#FFF3F7FC"/>
+<Color x:Key="Color.D0D0D0">#DAE4EF</Color>
+<SolidColorBrush x:Key="Brush.D0D0D0" Color="#DAE4EF"/>
+<Color x:Key="Color.757575">#738297</Color>
+<SolidColorBrush x:Key="Brush.757575" Color="#738297"/>
+<Color x:Key="Color.1976D2">#22769C</Color>
+<SolidColorBrush x:Key="Brush.1976D2" Color="#22769C"/>
+<Color x:Key="Color.Black">Black</Color>
+<SolidColorBrush x:Key="Brush.Black" Color="Black"/>
+<Color x:Key="Color.4A3A10">#526D87</Color>
+<SolidColorBrush x:Key="Brush.4A3A10" Color="#BDCEE1"/>
+<Color x:Key="Color.2B2B2B">#243C55</Color>
+<SolidColorBrush x:Key="Brush.2B2B2B" Color="#EDF5FF"/>
+<Color x:Key="Color.9E9E9E">#CDD9E7</Color>
+<SolidColorBrush x:Key="Brush.9E9E9E" Color="#B8FFFFFF"/>
+<Color x:Key="Color.3CAAE8">#3CAAE8</Color>
+<SolidColorBrush x:Key="Brush.3CAAE8" Color="#00FFFFFF"/>
+<Color x:Key="Color.DDDDDD">#DDDDDD</Color>
+<SolidColorBrush x:Key="Brush.DDDDDD" Color="#257491B0"/>
+<Color x:Key="Color.2B95D7">#2B95D7</Color>
+<SolidColorBrush x:Key="Brush.2B95D7" Color="#2B95D7"/>
+<Color x:Key="Color.777777">#777777</Color>
+<SolidColorBrush x:Key="Brush.777777" Color="#777777"/>
+<Color x:Key="Color.04396C">#172F4B</Color>
+<SolidColorBrush x:Key="Brush.04396C" Color="#E329415B"/>
+<Color x:Key="Color.1E88C7">#247BA4</Color>
+<SolidColorBrush x:Key="Brush.1E88C7" Color="#E02A4562"/>
+<Color x:Key="Color.D6EBFF">#D6EBFF</Color>
+<SolidColorBrush x:Key="Brush.D6EBFF" Color="#D6EBFF"/>
+<Color x:Key="Color.67AEDE">#376685</Color>
+<SolidColorBrush x:Key="Brush.67AEDE" Color="#00FFFFFF"/>
+<Color x:Key="Color.229ED9">#285777</Color>
+<SolidColorBrush x:Key="Brush.229ED9" Color="#00FFFFFF"/>
+<Color x:Key="Color.1B7FAF">#214762</Color>
+<SolidColorBrush x:Key="Brush.1B7FAF" Color="#00FFFFFF"/>
+<Color x:Key="Color.999999">#999999</Color>
+<SolidColorBrush x:Key="Brush.999999" Color="#999999"/>
+<Color x:Key="Color.555555">#52657A</Color>
+<SolidColorBrush x:Key="Brush.555555" Color="#52657A"/>
+<Color x:Key="Color.EDF1F4">#EAF1F9</Color>
+<SolidColorBrush x:Key="Brush.EDF1F4" Color="#EAF1F9"/>
+<Color x:Key="Color.D4DCE2">#D4DCE2</Color>
+<SolidColorBrush x:Key="Brush.D4DCE2" Color="#55FFFFFF"/>
+<Color x:Key="Color.275D7A">#275D7A</Color>
+<SolidColorBrush x:Key="Brush.275D7A" Color="#275D7A"/>
+<Color x:Key="Color.89949B">#89949B</Color>
+<SolidColorBrush x:Key="Brush.89949B" Color="#89949B"/>
+<Color x:Key="Color.5B6B76">#5B6B76</Color>
+<SolidColorBrush x:Key="Brush.5B6B76" Color="#5B6B76"/>
+<Color x:Key="Color.687984">#687984</Color>
+<SolidColorBrush x:Key="Brush.687984" Color="#687984"/>
+<Color x:Key="Color.E0E0E0">#E0E0E0</Color>
+<SolidColorBrush x:Key="Brush.E0E0E0" Color="#E0E0E0"/>
+<Color x:Key="Color.D9D9D9">#E4EBF4</Color>
+<SolidColorBrush x:Key="Brush.D9D9D9" Color="#E4EBF4"/>
+<Color x:Key="Color.8A8A8A">#8A8A8A</Color>
+<SolidColorBrush x:Key="Brush.8A8A8A" Color="#8A8A8A"/>
+<Color x:Key="Color.E5F1F8">#E8F4FA</Color>
+<SolidColorBrush x:Key="Brush.E5F1F8" Color="#E8F4FA"/>
+<Color x:Key="Color.B6D7EA">#B6D7EA</Color>
+<SolidColorBrush x:Key="Brush.B6D7EA" Color="#B6D7EA"/>
+<Color x:Key="Color.185E87">#185E87</Color>
+<SolidColorBrush x:Key="Brush.185E87" Color="#185E87"/>
+<Color x:Key="Color.01000000">#01000000</Color>
+<SolidColorBrush x:Key="Brush.01000000" Color="#55465D79"/>
+<Color x:Key="Color.666666">#65758B</Color>
+<SolidColorBrush x:Key="Brush.666666" Color="#65758B"/>
+<Color x:Key="Color.FAFAFA">#F5FFFFFF</Color>
+<SolidColorBrush x:Key="Brush.FAFAFA" Color="#FCFDFF"/>
+<Color x:Key="Color.E6E6E6">#E0ECF3FC</Color>
+<SolidColorBrush x:Key="Brush.E6E6E6" Color="#EAF0F8"/>
+<Color x:Key="Color.000000">#000000</Color>
+<SolidColorBrush x:Key="Brush.000000" Color="#000000"/>
+<Color x:Key="Color.1D455B">#DBECF3FC</Color>
+<SolidColorBrush x:Key="Brush.1D455B" Color="#1B354F"/>
+<Color x:Key="Color.0F2F40">#B8E3EDF8</Color>
+<SolidColorBrush x:Key="Brush.0F2F40" Color="#12283E"/>
+<Color x:Key="Color.5AABD6">#44FFFFFF</Color>
+<SolidColorBrush x:Key="Brush.5AABD6" Color="#35617D"/>
+<Color x:Key="Color.4283A6">#00FFFFFF</Color>
+<SolidColorBrush x:Key="Brush.4283A6" Color="#254760"/>
+<Color x:Key="Color.17638F">#215879</Color>
+<SolidColorBrush x:Key="Brush.17638F" Color="#215879"/>
+<Color x:Key="Color.2782B6">#247DAA</Color>
+<LinearGradientBrush x:Key="Brush.2782B6" StartPoint="0,0" EndPoint="1,1"><GradientStop Color="#3691c0" Offset="0"/><GradientStop Color="#247DAA" Offset="1"/></LinearGradientBrush>
+<FontFamily x:Key="Font.Arial">Segoe UI Variable Text, Segoe UI</FontFamily>
+<FontFamily x:Key="Font.SegoeUI">Segoe UI Variable Text, Segoe UI</FontFamily>
+<CornerRadius x:Key="SurfaceRadius">14</CornerRadius>
+<CornerRadius x:Key="ControlRadius">7</CornerRadius>
+
+<ControlTemplate x:Key="GlassButtonTemplate" TargetType="Button">
+ <Grid RenderTransformOrigin="0.5,0.5"><Grid.RenderTransform><ScaleTransform x:Name="PressScale"/></Grid.RenderTransform>
+ <Border x:Name="Surface" CornerRadius="10" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
+ <Grid><Border CornerRadius="9" IsHitTestVisible="False"><Border.Background><LinearGradientBrush StartPoint="0,0" EndPoint="0,1"><GradientStop Color="#22FFFFFF"/><GradientStop Color="#00FFFFFF" Offset="0.55"/><GradientStop Color="#08000000" Offset="1"/></LinearGradientBrush></Border.Background></Border>
+ <Border x:Name="Hover" CornerRadius="9" Background="#24FFFFFF" Opacity="0" IsHitTestVisible="False"/>
+ <ContentPresenter Margin="{TemplateBinding Padding}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" RecognizesAccessKey="True"/></Grid></Border>
+ </Grid><ControlTemplate.Triggers>
+ <Trigger Property="IsEnabled" Value="False"><Setter Property="Opacity" Value="0.4"/></Trigger>
+ <Trigger Property="IsKeyboardFocused" Value="True"><Setter TargetName="Surface" Property="BorderBrush" Value="#A5E6FF"/></Trigger>
+ <EventTrigger RoutedEvent="Mouse.MouseEnter"><BeginStoryboard><Storyboard><DoubleAnimation Storyboard.TargetName="Hover" Storyboard.TargetProperty="Opacity" To="1" Duration="0:0:0.18"/></Storyboard></BeginStoryboard></EventTrigger>
+ <EventTrigger RoutedEvent="Mouse.MouseLeave"><BeginStoryboard><Storyboard><DoubleAnimation Storyboard.TargetName="Hover" Storyboard.TargetProperty="Opacity" To="0" Duration="0:0:0.25"/></Storyboard></BeginStoryboard></EventTrigger>
+ <Trigger Property="IsPressed" Value="True"><Trigger.EnterActions><BeginStoryboard><Storyboard><DoubleAnimation Storyboard.TargetName="PressScale" Storyboard.TargetProperty="ScaleX" To="0.97" Duration="0:0:0.09"/><DoubleAnimation Storyboard.TargetName="PressScale" Storyboard.TargetProperty="ScaleY" To="0.97" Duration="0:0:0.09"/></Storyboard></BeginStoryboard></Trigger.EnterActions><Trigger.ExitActions><BeginStoryboard><Storyboard><DoubleAnimation Storyboard.TargetName="PressScale" Storyboard.TargetProperty="ScaleX" To="1" Duration="0:0:0.2"/><DoubleAnimation Storyboard.TargetName="PressScale" Storyboard.TargetProperty="ScaleY" To="1" Duration="0:0:0.2"/></Storyboard></BeginStoryboard></Trigger.ExitActions></Trigger>
+ </ControlTemplate.Triggers>
+</ControlTemplate>
+<Style TargetType="ComboBox"><Setter Property="Background" Value="#EFFFFFFF"/><Setter Property="Foreground" Value="#22354B"/><Setter Property="Padding" Value="8,0,22,0"/><Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ComboBox">
+                        <Grid>
+                            <ToggleButton x:Name="ToggleButton"
+                                          Focusable="False"
+                                          ClickMode="Press"
+                                          IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}">
+                                <ToggleButton.Template>
+                                    <ControlTemplate TargetType="ToggleButton">
+                                        <Border x:Name="ComboBorder"
+                                                Background="{DynamicResource Brush.FFFFFF}"
+                                                BorderBrush="{DynamicResource Brush.8E8E8E}"
+                                                BorderThickness="1" CornerRadius="7">
+                                            <Grid>
+                                                <Path Data="M 0,0 L 8,0 L 4,5 Z"
+                                                      Fill="{DynamicResource Brush.222222}"
+                                                      HorizontalAlignment="Right"
+                                                      VerticalAlignment="Center"
+                                                      Margin="0,0,8,0"/>
+                                            </Grid>
+                                        </Border>
+                                        <ControlTemplate.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter TargetName="ComboBorder" Property="Background" Value="{DynamicResource Brush.F7F7F7}"/>
+                                            </Trigger>
+                                        </ControlTemplate.Triggers>
+                                    </ControlTemplate>
+                                </ToggleButton.Template>
+                            </ToggleButton>
+
+                            <ContentPresenter IsHitTestVisible="False"
+                                              Content="{TemplateBinding SelectionBoxItem}"
+                                              ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"
+                                              ContentStringFormat="{TemplateBinding SelectionBoxItemStringFormat}" ClipToBounds="True"
+                                              Margin="{TemplateBinding Padding}"
+                                              HorizontalAlignment="Left"
+                                              VerticalAlignment="Center"/>
+
+                            <Popup x:Name="PART_Popup"
+                                   IsOpen="{TemplateBinding IsDropDownOpen}"
+                                   Placement="Bottom"
+                                   AllowsTransparency="True"
+                                   Focusable="False"
+                                   PopupAnimation="Slide">
+                                <Border Background="{DynamicResource Brush.FFFFFF}"
+                                        BorderBrush="{DynamicResource Brush.8E8E8E}"
+                                        BorderThickness="1"
+                                        Width="{Binding ActualWidth, RelativeSource={RelativeSource TemplatedParent}}"
+                                        MaxWidth="{Binding ActualWidth, RelativeSource={RelativeSource TemplatedParent}}"
+                                        MaxHeight="220" ClipToBounds="True" CornerRadius="7">
+                                    <ScrollViewer Margin="0,2" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+                                        <ItemsPresenter/>
+                                    </ScrollViewer>
+                                </Border>
+                            </Popup>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter></Style>
+<Style TargetType="Window">
+ <Setter Property="FontFamily" Value="Segoe UI Variable Text, Segoe UI"/>
+ <Setter Property="Foreground" Value="#22354B"/>
+ <Setter Property="TextOptions.TextFormattingMode" Value="Display"/>
+</Style>
+<Style TargetType="Button">
+ <Setter Property="Background" Value="#EDF3FA"/><Setter Property="BorderBrush" Value="#CDDBEA"/>
+ <Setter Property="Foreground" Value="#243E59"/><Setter Property="Cursor" Value="Hand"/>
+ <Setter Property="HorizontalContentAlignment" Value="Center"/><Setter Property="VerticalContentAlignment" Value="Center"/>
+ <Setter Property="Template"><Setter.Value><StaticResource ResourceKey="GlassButtonTemplate"/></Setter.Value></Setter>
+</Style>
+<Style TargetType="TextBox">
+ <Setter Property="Background" Value="#FCFDFF"/><Setter Property="Foreground" Value="#22354B"/>
+ <Setter Property="BorderBrush" Value="#CBD8E8"/><Setter Property="SelectionBrush" Value="#69B9E8"/>
+ <Setter Property="Template"><Setter.Value><ControlTemplate TargetType="TextBox">
+  <Border x:Name="InputSurface" CornerRadius="6" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
+   <ScrollViewer x:Name="PART_ContentHost" Margin="{TemplateBinding Padding}"/>
+  </Border>
+  <ControlTemplate.Triggers>
+   <Trigger Property="IsKeyboardFocusWithin" Value="True"><Setter TargetName="InputSurface" Property="BorderBrush" Value="#2487BC"/></Trigger>
+   <Trigger Property="IsEnabled" Value="False"><Setter Property="Opacity" Value="0.45"/></Trigger>
+  </ControlTemplate.Triggers>
+ </ControlTemplate></Setter.Value></Setter>
+</Style>
+
+        <Style x:Key="InstalledSwitchStyle" TargetType="{x:Type ToggleButton}">
+            <Setter Property="Width" Value="34"/><Setter Property="Height" Value="20"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="ToolTipService.ShowOnDisabled" Value="True"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ToggleButton}">
+                        <Border x:Name="Track" Background="{DynamicResource Brush.B7C1C8}" CornerRadius="7">
+                            <Ellipse x:Name="Thumb" Width="16" Height="16" Fill="{DynamicResource Brush.White}" HorizontalAlignment="Left" Margin="2"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter TargetName="Track" Property="Background" Value="{DynamicResource Brush.278BC2}"/>
+                                <Setter TargetName="Thumb" Property="HorizontalAlignment" Value="Right"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False"><Setter Property="Opacity" Value="0.45"/></Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <!-- Кнопки заголовка окна -->
+        <Style x:Key="CaptionButtonStyle" TargetType="Button">
+            <Setter Property="Width" Value="45"/>
+            <Setter Property="Height" Value="29"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="{DynamicResource Brush.333333}"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Padding" Value="0"/>
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Template">
+                <Setter.Value><StaticResource ResourceKey="GlassButtonTemplate"/></Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="CloseCaptionButtonStyle"
+               TargetType="Button"
+               BasedOn="{StaticResource CaptionButtonStyle}">
+            <Setter Property="Template">
+                <Setter.Value><StaticResource ResourceKey="GlassButtonTemplate"/></Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- Кнопки правой панели -->
+        <Style x:Key="PanelButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="{DynamicResource Brush.5DA2CF}"/>
+            <Setter Property="Foreground" Value="{DynamicResource Brush.FFFFFF}"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Padding" Value="0"/>
+            <Setter Property="HorizontalContentAlignment" Value="Left"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value><StaticResource ResourceKey="GlassButtonTemplate"/></Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- Кнопки-иконки в зелёной нижней панели -->
+        <Style x:Key="GreenBarIconButtonStyle" TargetType="Button">
+            <Setter Property="Width" Value="30"/>
+            <Setter Property="Height" Value="30"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="{DynamicResource Brush.FFFFFF}"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Padding" Value="0"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value><StaticResource ResourceKey="GlassButtonTemplate"/></Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="SidebarScrollBarStyle" TargetType="ScrollBar">
+            <Setter Property="Width" Value="14"/>
+            <Setter Property="Background" Value="{DynamicResource Brush.5DA2CF}"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ScrollBar">
+                        <Border Background="{TemplateBinding Background}"
+                                BorderBrush="{DynamicResource Brush.3B7FA3}"
+                                BorderThickness="0" CornerRadius="7">
+                            <Track x:Name="PART_Track"
+                                   IsDirectionReversed="True">
+                                <Track.DecreaseRepeatButton>
+                                    <RepeatButton Command="ScrollBar.PageUpCommand"
+                                                  Opacity="0"
+                                                  Focusable="False"/>
+                                </Track.DecreaseRepeatButton>
+                                <Track.Thumb>
+                                    <Thumb>
+                                        <Thumb.Template>
+                                            <ControlTemplate TargetType="Thumb">
+                                                <Border Background="{DynamicResource Brush.C6E9FA}"
+                                                        CornerRadius="7"
+                                                        Margin="2,0">
+                                                    <StackPanel VerticalAlignment="Top"
+                                                                Margin="0,6,0,0">
+                                                        <Rectangle Width="6" Height="1" Fill="{DynamicResource Brush.FFFFFF}" HorizontalAlignment="Center"/>
+                                                        <Rectangle Width="6" Height="1" Fill="{DynamicResource Brush.FFFFFF}" HorizontalAlignment="Center" Margin="0,2,0,0"/>
+                                                        <Rectangle Width="6" Height="1" Fill="{DynamicResource Brush.FFFFFF}" HorizontalAlignment="Center" Margin="0,2,0,0"/>
+                                                    </StackPanel>
+                                                </Border>
+                                            </ControlTemplate>
+                                        </Thumb.Template>
+                                    </Thumb>
+                                </Track.Thumb>
+                                <Track.IncreaseRepeatButton>
+                                    <RepeatButton Command="ScrollBar.PageDownCommand"
+                                                  Opacity="0"
+                                                  Focusable="False"/>
+                                </Track.IncreaseRepeatButton>
+                            </Track>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="IconHoverButtonStyle" TargetType="Button">
+            <Setter Property="Width" Value="36"/>
+            <Setter Property="Height" Value="36"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Padding" Value="0"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Template">
+                <Setter.Value><StaticResource ResourceKey="GlassButtonTemplate"/></Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="VersionComboBoxStyle" TargetType="ComboBox">
+            <Setter Property="Foreground" Value="{DynamicResource Brush.222222}"/>
+            <Setter Property="Background" Value="{DynamicResource Brush.FFFFFF}"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource Brush.8E8E8E}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="HorizontalContentAlignment" Value="Left"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ComboBox">
+                        <Grid>
+                            <ToggleButton x:Name="ToggleButton"
+                                          Focusable="False"
+                                          ClickMode="Press"
+                                          IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}">
+                                <ToggleButton.Template>
+                                    <ControlTemplate TargetType="ToggleButton">
+                                        <Border x:Name="ComboBorder"
+                                                Background="{DynamicResource Brush.FFFFFF}"
+                                                BorderBrush="{DynamicResource Brush.8E8E8E}"
+                                                BorderThickness="1" CornerRadius="7">
+                                            <Grid>
+                                                <Path Data="M 0,0 L 8,0 L 4,5 Z"
+                                                      Fill="{DynamicResource Brush.222222}"
+                                                      HorizontalAlignment="Right"
+                                                      VerticalAlignment="Center"
+                                                      Margin="0,0,8,0"/>
+                                            </Grid>
+                                        </Border>
+                                        <ControlTemplate.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter TargetName="ComboBorder" Property="Background" Value="{DynamicResource Brush.F7F7F7}"/>
+                                            </Trigger>
+                                        </ControlTemplate.Triggers>
+                                    </ControlTemplate>
+                                </ToggleButton.Template>
+                            </ToggleButton>
+
+                            <ContentPresenter IsHitTestVisible="False"
+                                              Content="{TemplateBinding SelectionBoxItem}"
+                                              ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"
+                                              ContentStringFormat="{TemplateBinding SelectionBoxItemStringFormat}" ClipToBounds="True"
+                                              Margin="{TemplateBinding Padding}"
+                                              HorizontalAlignment="Left"
+                                              VerticalAlignment="Center"/>
+
+                            <Popup x:Name="PART_Popup"
+                                   IsOpen="{TemplateBinding IsDropDownOpen}"
+                                   Placement="Bottom"
+                                   AllowsTransparency="True"
+                                   Focusable="False"
+                                   PopupAnimation="Slide">
+                                <Border Background="{DynamicResource Brush.FFFFFF}"
+                                        BorderBrush="{DynamicResource Brush.8E8E8E}"
+                                        BorderThickness="1"
+                                        Width="{Binding ActualWidth, RelativeSource={RelativeSource TemplatedParent}}"
+                                        MaxWidth="{Binding ActualWidth, RelativeSource={RelativeSource TemplatedParent}}"
+                                        MaxHeight="220" ClipToBounds="True" CornerRadius="7">
+                                    <ScrollViewer Margin="0,2" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+                                        <ItemsPresenter/>
+                                    </ScrollViewer>
+                                </Border>
+                            </Popup>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="SettingsLabelStyle" TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="{DynamicResource Font.Arial}"/>
+            <Setter Property="FontSize" Value="11"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Foreground" Value="{DynamicResource PanelText}"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+
+        <Style x:Key="SettingsTextBoxStyle" TargetType="TextBox" BasedOn="{StaticResource {x:Type TextBox}}">
+            <Setter Property="Height" Value="25"/>
+            <Setter Property="Background" Value="{DynamicResource PanelInput}"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource SectionBorder}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="FontFamily" Value="{DynamicResource Font.Arial}"/>
+            <Setter Property="FontSize" Value="11"/>
+            <Setter Property="Foreground" Value="{DynamicResource PanelText}"/>
+            <Setter Property="Padding" Value="6,0"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+        </Style>
+
+        <Style x:Key="PanelComboStyle" TargetType="ComboBox">
+            <Setter Property="Foreground" Value="{DynamicResource PanelText}"/>
+            <Setter Property="Background" Value="{DynamicResource PanelInput}"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource SectionBorder}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="HorizontalContentAlignment" Value="Left"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ComboBox">
+                        <Grid>
+                            <ToggleButton x:Name="ToggleButton"
+                                          Focusable="False"
+                                          ClickMode="Press"
+                                          IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}">
+                                <ToggleButton.Template>
+                                    <ControlTemplate TargetType="ToggleButton">
+                                        <Border x:Name="ComboBorder"
+                                                Background="{DynamicResource PanelInput}"
+                                                BorderBrush="{DynamicResource SectionBorder}"
+                                                BorderThickness="1" CornerRadius="7">
+                                            <Grid>
+                                                <Path Data="M 0,0 L 8,0 L 4,5 Z"
+                                                      Fill="{DynamicResource PanelText}"
+                                                      HorizontalAlignment="Right"
+                                                      VerticalAlignment="Center"
+                                                      Margin="0,0,8,0"/>
+                                            </Grid>
+                                        </Border>
+                                        <ControlTemplate.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter TargetName="ComboBorder" Property="Background" Value="{DynamicResource PanelInput}"/>
+                                            </Trigger>
+                                        </ControlTemplate.Triggers>
+                                    </ControlTemplate>
+                                </ToggleButton.Template>
+                            </ToggleButton>
+
+                            <ContentPresenter IsHitTestVisible="False"
+                                              Content="{TemplateBinding SelectionBoxItem}"
+                                              ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"
+                                              ContentStringFormat="{TemplateBinding SelectionBoxItemStringFormat}" ClipToBounds="True"
+                                              Margin="{TemplateBinding Padding}"
+                                              HorizontalAlignment="Left"
+                                              VerticalAlignment="Center"/>
+
+                            <Popup x:Name="PART_Popup"
+                                   IsOpen="{TemplateBinding IsDropDownOpen}"
+                                   Placement="Bottom"
+                                   AllowsTransparency="True"
+                                   Focusable="False"
+                                   PopupAnimation="Slide">
+                                <Border Background="#F127405A"
+                                        BorderBrush="{DynamicResource SectionBorder}"
+                                        BorderThickness="1"
+                                        Width="{Binding ActualWidth, RelativeSource={RelativeSource TemplatedParent}}"
+                                        MaxWidth="{Binding ActualWidth, RelativeSource={RelativeSource TemplatedParent}}"
+                                        MaxHeight="220" ClipToBounds="True" CornerRadius="7">
+                                    <ScrollViewer Margin="0,2" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+                                        <ItemsPresenter/>
+                                    </ScrollViewer>
+                                </Border>
+                            </Popup>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+<Style x:Key="SettingsComboBoxStyle"
+               TargetType="ComboBox"
+               BasedOn="{StaticResource PanelComboStyle}">
+            <Setter Property="Height" Value="25"/>
+            <Setter Property="FontFamily" Value="{DynamicResource Font.Arial}"/>
+            <Setter Property="FontSize" Value="11"/>
+            <Setter Property="Padding" Value="8,0,24,0"/>
+        </Style>
+
+        <Style x:Key="SettingsCheckBoxStyle" TargetType="CheckBox">
+            <Setter Property="FontFamily" Value="{DynamicResource Font.Arial}"/>
+            <Setter Property="FontSize" Value="11"/>
+            <Setter Property="Foreground" Value="{DynamicResource PanelText}"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="CheckBox">
+                        <StackPanel Orientation="Horizontal">
+                            <Border x:Name="CheckBorder"
+                                    Width="14"
+                                    Height="14"
+                                    Background="{DynamicResource PanelInput}"
+                                    BorderBrush="{DynamicResource Brush.A6A6A6}"
+                                    BorderThickness="1"
+                                    VerticalAlignment="Center" CornerRadius="7">
+                                <Path x:Name="CheckMark"
+                                      Data="M 2,7 L 5,10 L 12,3"
+                                      Stroke="#FFFFFF"
+                                      StrokeThickness="2"
+                                      Visibility="Collapsed"/>
+                            </Border>
+                            <ContentPresenter Margin="6,0,0,0"
+                                              VerticalAlignment="Center"/>
+                        </StackPanel>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter TargetName="CheckBorder" Property="Background" Value="{DynamicResource Brush.408AD2}"/>
+                                <Setter TargetName="CheckBorder" Property="BorderBrush" Value="{DynamicResource Brush.408AD2}"/>
+                                <Setter TargetName="CheckMark" Property="Visibility" Value="Visible"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <ControlTemplate x:Key="SectionFlatButtonTemplate" TargetType="Button">
+ <Grid><Border x:Name="Surface" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="7"/>
+  <Border x:Name="Hover" Background="#16FFFFFF" CornerRadius="7" Opacity="0" IsHitTestVisible="False"/>
+  <ContentPresenter Margin="{TemplateBinding Padding}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" RecognizesAccessKey="True"/>
+ </Grid><ControlTemplate.Triggers>
+  <EventTrigger RoutedEvent="Mouse.MouseEnter"><BeginStoryboard><Storyboard><DoubleAnimation Storyboard.TargetName="Hover" Storyboard.TargetProperty="Opacity" To="1" Duration="0:0:0.15"/></Storyboard></BeginStoryboard></EventTrigger>
+  <EventTrigger RoutedEvent="Mouse.MouseLeave"><BeginStoryboard><Storyboard><DoubleAnimation Storyboard.TargetName="Hover" Storyboard.TargetProperty="Opacity" To="0" Duration="0:0:0.2"/></Storyboard></BeginStoryboard></EventTrigger>
+  <Trigger Property="IsPressed" Value="True"><Setter Property="Opacity" Value="0.72"/></Trigger>
+  <Trigger Property="IsKeyboardFocused" Value="True"><Setter TargetName="Surface" Property="BorderBrush" Value="#B6E4FF"/><Setter TargetName="Surface" Property="BorderThickness" Value="1"/></Trigger>
+  <Trigger Property="IsEnabled" Value="False"><Setter Property="Opacity" Value="0.42"/></Trigger>
+ </ControlTemplate.Triggers></ControlTemplate>
+<Style x:Key="SectionButtonStyle" TargetType="Button"><Setter Property="Background" Value="Transparent"/><Setter Property="Foreground" Value="{DynamicResource PanelText}"/><Setter Property="BorderThickness" Value="0"/><Setter Property="Cursor" Value="Hand"/><Setter Property="HorizontalContentAlignment" Value="Center"/><Setter Property="VerticalContentAlignment" Value="Center"/><Setter Property="Template" Value="{StaticResource SectionFlatButtonTemplate}"/></Style>
+<Style x:Key="SettingsGreenButtonStyle" TargetType="Button">
+            <Setter Property="Height" Value="24"/>
+            <Setter Property="Background" Value="{DynamicResource SectionActionBrush}"/>
+            <Setter Property="Foreground" Value="{DynamicResource Brush.FFFFFF}"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="FontFamily" Value="{DynamicResource Font.Arial}"/>
+            <Setter Property="FontSize" Value="11"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Padding" Value="0"/>
+            <Setter Property="Template">
+                <Setter.Value><StaticResource ResourceKey="SectionFlatButtonTemplate"/></Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="SettingsOrangeButtonStyle"
+               TargetType="Button"
+               BasedOn="{StaticResource SettingsGreenButtonStyle}">
+            <Setter Property="Background" Value="{DynamicResource SectionActionBrush}"/>
+        </Style>
+
+        <Style x:Key="SettingsRedButtonStyle"
+               TargetType="Button"
+               BasedOn="{StaticResource SettingsGreenButtonStyle}">
+            <Setter Property="Background" Value="{DynamicResource Brush.0C5AA6}"/>
+        </Style>
+
+        <Style x:Key="SettingsOutlineButtonStyle"
+               TargetType="Button"
+               BasedOn="{StaticResource SettingsGreenButtonStyle}">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="{DynamicResource SectionActionBrush}"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource SectionActionBrush}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+        </Style>
+
+        <Style x:Key="SettingsTabButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="{DynamicResource Brush.2E8DC5}"/>
+            <Setter Property="Foreground" Value="{DynamicResource Brush.EAF7FF}"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="FontFamily" Value="{DynamicResource Font.Arial}"/>
+            <Setter Property="FontSize" Value="11"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value><StaticResource ResourceKey="SectionFlatButtonTemplate"/></Setter.Value>
+            </Setter>
+        </Style>
+    
+
+<LinearGradientBrush x:Key="PromoSurface" StartPoint="0,0" EndPoint="1,1"><GradientStop Color="#DB34516D"/><GradientStop Color="#B9213B55" Offset="1"/></LinearGradientBrush>
+<FontFamily x:Key="Font.Ui">Segoe UI Variable Text, Segoe UI</FontFamily>
+<LinearGradientBrush x:Key="NewsSurface" StartPoint="0,0" EndPoint="1,1"><GradientStop Color="#DE29415C"/><GradientStop Color="#C01B324B" Offset="1"/></LinearGradientBrush>
+<SolidColorBrush x:Key="NewsText" Color="#EBF2FA"/>
+<SolidColorBrush x:Key="NewsAccent" Color="#A3DFFF"/>
+<SolidColorBrush x:Key="NewsMuted" Color="#BED0E3"/>
+<SolidColorBrush x:Key="NewsBorder" Color="#557FA4C6"/>
+<SolidColorBrush x:Key="SceneTint" Color="#00000000"/>
+<ControlTemplate x:Key="InlineButton0" TargetType="Button"><Border Background="{TemplateBinding Background}" CornerRadius="12" BorderBrush="#55FFFFFF" BorderThickness="1"><ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/></Border></ControlTemplate>
+<ControlTemplate x:Key="InlineButton1" TargetType="Button"><Grid RenderTransformOrigin="0.5,0.5"><Grid.RenderTransform><ScaleTransform x:Name="Press"/></Grid.RenderTransform><Border Background="{TemplateBinding Background}" CornerRadius="12" BorderBrush="#65C8E8FA" BorderThickness="1"><Grid><Border x:Name="Light" CornerRadius="11" Background="#20FFFFFF" Opacity="0" IsHitTestVisible="False"/><StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center"><Path Data="M0,0 L0,16 L12,8 Z" Width="12" Height="16" Stretch="Uniform" VerticalAlignment="Center" Fill="#EFFAFF" Margin="0,0,12,0"/><ContentPresenter VerticalAlignment="Center"/></StackPanel></Grid></Border></Grid><ControlTemplate.Triggers><EventTrigger RoutedEvent="Mouse.MouseEnter"><BeginStoryboard><Storyboard><DoubleAnimation Storyboard.TargetName="Light" Storyboard.TargetProperty="Opacity" To="1" Duration="0:0:0.16"/></Storyboard></BeginStoryboard></EventTrigger><EventTrigger RoutedEvent="Mouse.MouseLeave"><BeginStoryboard><Storyboard><DoubleAnimation Storyboard.TargetName="Light" Storyboard.TargetProperty="Opacity" To="0" Duration="0:0:0.22"/></Storyboard></BeginStoryboard></EventTrigger><Trigger Property="IsPressed" Value="True"><Setter Property="Opacity" Value="0.8"/></Trigger><Trigger Property="IsKeyboardFocused" Value="True"><Setter TargetName="Light" Property="Opacity" Value="1"/></Trigger><Trigger Property="IsEnabled" Value="False"><Setter Property="Opacity" Value="0.45"/></Trigger></ControlTemplate.Triggers></ControlTemplate>
+<sys:Double x:Key="SceneOpacity">1</sys:Double><sys:Double x:Key="SceneBlur">2.5</sys:Double><sys:Double x:Key="NewsHeadingSize">20</sys:Double>
+<sys:Boolean x:Key="MotionEnabled">true</sys:Boolean><SolidColorBrush x:Key="WindowGlass" Color="#FFF0F4FA"/>
+<Style TargetType="ScrollBar"><Setter Property="Width" Value="12"/><Setter Property="Template"><Setter.Value><ControlTemplate TargetType="ScrollBar"><Grid Background="Transparent"><Track x:Name="PART_Track" IsDirectionReversed="True"><Track.DecreaseRepeatButton><RepeatButton Command="ScrollBar.PageUpCommand" Opacity="0"/></Track.DecreaseRepeatButton><Track.Thumb><Thumb><Thumb.Template><ControlTemplate TargetType="Thumb"><Border Background="#60728DA8" CornerRadius="4" Margin="3,2"/></ControlTemplate></Thumb.Template></Thumb></Track.Thumb><Track.IncreaseRepeatButton><RepeatButton Command="ScrollBar.PageDownCommand" Opacity="0"/></Track.IncreaseRepeatButton></Track></Grid></ControlTemplate></Setter.Value></Setter><Style.Triggers><Trigger Property="Orientation" Value="Horizontal"><Setter Property="Width" Value="Auto"/><Setter Property="Height" Value="12"/></Trigger></Style.Triggers></Style>
+<SolidColorBrush x:Key="OnGlass" Color="#EDF5FF"/>
+<SolidColorBrush x:Key="GlassIcon" Color="#E8F4FF"/>
+<SolidColorBrush x:Key="PanelBorder" Color="#B8FFFFFF"/>
+<SolidColorBrush x:Key="PopularHeading" Color="#EDF5FF"/>
+<SolidColorBrush x:Key="PopularInk" Color="#EDF5FF"/>
+<sys:String x:Key="WelcomeLine1">ПОЛНОСТЬЮ БЕСПЛАТНЫЙ</sys:String>
+<sys:String x:Key="WelcomeLine2">OPEN-SOURCE ЛАУНЧЕР</sys:String>
+<sys:String x:Key="WelcomeSubtitle">Без рекламы, скрытых платежей и навязанных сервисов. Только игра и удобный запуск.</sys:String>
+<sys:Double x:Key="WelcomeFont">16</sys:Double><sys:Double x:Key="BodyFont">12</sys:Double><sys:Double x:Key="PopularFont">15</sys:Double><Visibility x:Key="LegacyOnly">Collapsed</Visibility><Visibility x:Key="ModernOnly">Visible</Visibility><sys:String x:Key="NavПомощь">Помощь</sys:String><sys:String x:Key="NavОлаунчере">О лаунчере</sys:String><sys:String x:Key="NavСайт">Сайт</sys:String><sys:String x:Key="NavDiscord">Discord</sys:String><sys:String x:Key="NavTelegram">Telegram</sys:String><sys:String x:Key="NavGitHub">GitHub</sys:String><sys:Double x:Key="NavFont">13</sys:Double><SolidColorBrush x:Key="TabInk" Color="#226CA7"/>
+<Style x:Key="NavigationRowStyle" TargetType="Button">
+ <Setter Property="Cursor" Value="Hand"/>
+ <Setter Property="Template"><Setter.Value><ControlTemplate TargetType="Button">
+  <Grid Background="Transparent">
+   <Border x:Name="Highlight" CornerRadius="9" Background="#18FFFFFF" Opacity="0" IsHitTestVisible="False"/>
+   <ContentPresenter x:Name="Label" Margin="{TemplateBinding Padding}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="Center" RecognizesAccessKey="True"/>
+  </Grid>
+  <ControlTemplate.Triggers>
+   <EventTrigger RoutedEvent="Mouse.MouseEnter"><BeginStoryboard><Storyboard><DoubleAnimation Storyboard.TargetName="Highlight" Storyboard.TargetProperty="Opacity" To="1" Duration="0:0:0.16"/></Storyboard></BeginStoryboard></EventTrigger>
+   <EventTrigger RoutedEvent="Mouse.MouseLeave"><BeginStoryboard><Storyboard><DoubleAnimation Storyboard.TargetName="Highlight" Storyboard.TargetProperty="Opacity" To="0" Duration="0:0:0.22"/></Storyboard></BeginStoryboard></EventTrigger>
+   <Trigger Property="IsKeyboardFocused" Value="True"><Setter TargetName="Highlight" Property="BorderBrush" Value="#7DC8E8FF"/><Setter TargetName="Highlight" Property="BorderThickness" Value="1"/><Setter TargetName="Highlight" Property="Opacity" Value="1"/></Trigger>
+   <Trigger Property="IsPressed" Value="True"><Setter TargetName="Label" Property="Opacity" Value="0.65"/></Trigger>
+   <Trigger Property="IsEnabled" Value="False"><Setter Property="Opacity" Value="0.4"/></Trigger>
+  </ControlTemplate.Triggers>
+ </ControlTemplate></Setter.Value></Setter>
+</Style>
+<sys:Double x:Key="PopularHeight">286</sys:Double>
+<GridLength x:Key="PopularHeaderHeight">48</GridLength>
+<sys:Double x:Key="PopularRowHeight">72</sys:Double>
+<GridLength x:Key="PopularIconWidth">58</GridLength>
+<sys:Double x:Key="PopularIconSize">44</sys:Double>
+<GridLength x:Key="PopularFooterHeight">0</GridLength>
+<Thickness x:Key="PopularRowMargin">8,1,8,1</Thickness>
+<SolidColorBrush x:Key="PopularRowFill" Color="#18FFFFFF"/>
+<GridLength x:Key="NewsThumbWidth">138</GridLength>
+<Thickness x:Key="NewsItemPadding">14</Thickness>
+<Thickness x:Key="NewsItemMargin">0,0,0,14</Thickness>
+<SolidColorBrush x:Key="NewsItemFill" Color="#12FFFFFF"/>
+<SolidColorBrush x:Key="FooterBase" Color="Transparent"/>
+<SolidColorBrush x:Key="FooterMaterial" Color="#C92B4561"/>
+<SolidColorBrush x:Key="FooterEdge" Color="#658BAAC9"/>
+<Thickness x:Key="FooterMargin">12,3,12,9</Thickness>
+<sys:Double x:Key="DockFieldHeight">42</sys:Double>
+<Thickness x:Key="WelcomeSpacing">20,18,20,14</Thickness>
+<SolidColorBrush x:Key="CentralBase" Color="Transparent"/><sys:Double x:Key="NewsBodySize">15</sys:Double><sys:Double x:Key="NewsDateSize">11</sys:Double><sys:Double x:Key="NewsLinkSize">13</sys:Double><sys:Double x:Key="PopularHeadingSize">20</sys:Double><Thickness x:Key="TopMargin">24,16,24,0</Thickness><sys:Double x:Key="TopHeight">286</sys:Double><GridLength x:Key="TopLeft">300</GridLength><GridLength x:Key="TopGap">16</GridLength><GridLength x:Key="TopRight">*</GridLength><sys:Double x:Key="WelcomeWidth">NaN</sys:Double><sys:Double x:Key="WelcomeHeight">286</sys:Double><Thickness x:Key="WelcomeMargin">0</Thickness><sys:Double x:Key="PopularWidth">NaN</sys:Double><Thickness x:Key="NewsMargin">24,318,24,16</Thickness><SolidColorBrush x:Key="PopularFrame" Color="#257FA4C6"/><SolidColorBrush x:Key="DockFieldFill" Color="#A6486A8A"/><SolidColorBrush x:Key="DockFieldInk" Color="#EDF5FF"/><SolidColorBrush x:Key="DockFieldEdge" Color="#8093B6D4"/><Style x:Key="DockVersionStyle" TargetType="ComboBox">
+            <Setter Property="Foreground" Value="{DynamicResource DockFieldInk}"/>
+            <Setter Property="Background" Value="{DynamicResource DockFieldFill}"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource DockFieldEdge}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="HorizontalContentAlignment" Value="Left"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ComboBox">
+                        <Grid>
+                            <ToggleButton x:Name="ToggleButton"
+                                          Focusable="False"
+                                          ClickMode="Press"
+                                          IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}">
+                                <ToggleButton.Template>
+                                    <ControlTemplate TargetType="ToggleButton">
+                                        <Border x:Name="ComboBorder"
+                                                Background="{DynamicResource DockFieldFill}"
+                                                BorderBrush="{DynamicResource DockFieldEdge}"
+                                                BorderThickness="1" CornerRadius="7">
+                                            <Grid>
+                                                <Path Data="M 0,0 L 8,0 L 4,5 Z"
+                                                      Fill="{DynamicResource DockFieldInk}"
+                                                      HorizontalAlignment="Right"
+                                                      VerticalAlignment="Center"
+                                                      Margin="0,0,8,0"/>
+                                            </Grid>
+                                        </Border>
+                                        <ControlTemplate.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter TargetName="ComboBorder" Property="Background" Value="{DynamicResource DockFieldFill}"/>
+                                            </Trigger>
+                                        </ControlTemplate.Triggers>
+                                    </ControlTemplate>
+                                </ToggleButton.Template>
+                            </ToggleButton>
+
+                            <ContentPresenter IsHitTestVisible="False"
+                                              Content="{TemplateBinding SelectionBoxItem}"
+                                              ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"
+                                              ContentStringFormat="{TemplateBinding SelectionBoxItemStringFormat}" ClipToBounds="True"
+                                              Margin="{TemplateBinding Padding}"
+                                              HorizontalAlignment="Left"
+                                              VerticalAlignment="Center"/>
+
+                            <Popup x:Name="PART_Popup"
+                                   IsOpen="{TemplateBinding IsDropDownOpen}"
+                                   Placement="Bottom"
+                                   AllowsTransparency="True"
+                                   Focusable="False"
+                                   PopupAnimation="Slide">
+                                <Border Background="#F127405A"
+                                        BorderBrush="{DynamicResource DockFieldEdge}"
+                                        BorderThickness="1"
+                                        Width="{Binding ActualWidth, RelativeSource={RelativeSource TemplatedParent}}"
+                                        MaxWidth="{Binding ActualWidth, RelativeSource={RelativeSource TemplatedParent}}"
+                                        MaxHeight="220" ClipToBounds="True" CornerRadius="7">
+                                    <ScrollViewer Margin="0,2" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+                                        <ItemsPresenter/>
+                                    </ScrollViewer>
+                                </Border>
+                            </Popup>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style><Style x:Key="DockCheckStyle" TargetType="CheckBox"><Setter Property="Cursor" Value="Hand"/><Setter Property="Template"><Setter.Value><ControlTemplate TargetType="CheckBox"><Grid><Grid.ColumnDefinitions><ColumnDefinition Width="Auto"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions><Border x:Name="Box" Width="14" Height="14" CornerRadius="4" Background="#163A6385" BorderBrush="#799CB9D3" BorderThickness="1" VerticalAlignment="Center"><Path x:Name="Tick" Data="M2,6 L5,9 L11,3" Stroke="#F5FAFF" StrokeThickness="1.6" StrokeLineJoin="Round" Opacity="0"/></Border><ContentPresenter Grid.Column="1" Margin="6,0,0,0" VerticalAlignment="Center" RecognizesAccessKey="True"/></Grid><ControlTemplate.Triggers><Trigger Property="IsChecked" Value="True"><Setter TargetName="Box" Property="Background" Value="#357DAF"/><Setter TargetName="Tick" Property="Opacity" Value="1"/></Trigger><Trigger Property="IsKeyboardFocused" Value="True"><Setter TargetName="Box" Property="BorderBrush" Value="#EDF7FF"/></Trigger><Trigger Property="IsEnabled" Value="False"><Setter Property="Opacity" Value="0.4"/></Trigger></ControlTemplate.Triggers></ControlTemplate></Setter.Value></Setter></Style><HorizontalAlignment x:Key="TopAlignment">Stretch</HorizontalAlignment><SolidColorBrush x:Key="DockGroupInk" Color="#A3DFFF"/><GridLength x:Key="FooterHeight">96</GridLength><sys:Double x:Key="DockFont">14</sys:Double><sys:Double x:Key="DockCheckFont">11</sys:Double><sys:Double x:Key="DockCheckOpacity">0.8</sys:Double><Thickness x:Key="DockInputBorder">1</Thickness><Thickness x:Key="DockPadding">12,0</Thickness><sys:Double x:Key="PlayHeight">54</sys:Double><sys:Double x:Key="PlayFont">20</sys:Double><Style x:Key="DockIconStyle" TargetType="Button" BasedOn="{StaticResource NavigationRowStyle}"><Setter Property="Width" Value="36"/><Setter Property="Height" Value="36"/><Setter Property="HorizontalContentAlignment" Value="Center"/><Setter Property="VerticalContentAlignment" Value="Center"/><Setter Property="Padding" Value="0"/></Style><LinearGradientBrush x:Key="PlayMaterial" StartPoint="0,0" EndPoint="1,1"><GradientStop Color="#CF469DC5"/><GradientStop Color="#CC2B628C" Offset="1"/></LinearGradientBrush><LinearGradientBrush x:Key="PanelSurface" StartPoint="0,0" EndPoint="1,1"><GradientStop Color="#FF29435E"/><GradientStop Color="#FF1D344C" Offset="1"/></LinearGradientBrush><SolidColorBrush x:Key="PanelHeader" Color="#DC29445F"/><SolidColorBrush x:Key="PanelSide" Color="#D32B4661"/><SolidColorBrush x:Key="PanelInput" Color="#C942607B"/><SolidColorBrush x:Key="PanelText" Color="#EFF6FF"/><SolidColorBrush x:Key="PanelMuted" Color="#BED0DF"/><SolidColorBrush x:Key="PanelAccent" Color="#A5DFFF"/><SolidColorBrush x:Key="SectionBorder" Color="#577998B5"/><SolidColorBrush x:Key="PanelCard" Color="#293F6386"/><SolidColorBrush x:Key="PanelPlaceholder" Color="#C3D0DE"/><SolidColorBrush x:Key="PanelVeil" Color="#D7132941"/><SolidColorBrush x:Key="PanelTabActive" Color="#365D8BAD"/><SolidColorBrush x:Key="PanelTabInactive" Color="#002A4562"/><SolidColorBrush x:Key="PanelAlert" Color="#F033506D"/><SolidColorBrush x:Key="PanelDialog" Color="#F0243C56"/><Thickness x:Key="PanelCardMargin">0,4,0,4</Thickness><Thickness x:Key="PanelCardPadding">12,0,12,0</Thickness><Thickness x:Key="PanelCardBorder">0</Thickness><SolidColorBrush x:Key="PanelTabActiveInk" Color="#EDF5FF"/><SolidColorBrush x:Key="PanelSecondary" Color="#906989A5"/><SolidColorBrush x:Key="SectionActionBrush" Color="#38759D"/><CornerRadius x:Key="ModsRadius">5</CornerRadius><SolidColorBrush x:Key="ModsHeader" Color="#5529455F"/><SolidColorBrush x:Key="ModsSide" Color="#552B4661"/></ResourceDictionary>

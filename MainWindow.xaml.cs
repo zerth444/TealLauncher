@@ -177,6 +177,8 @@ public partial class MainWindow : Window
                 _popularModpacks.Add(new PopularModpackItem
                 {
                     Title = hit.Title,
+                    IconUrl = hit.IconUrl,
+                    Description = hit.Description,
                     Details = string.IsNullOrWhiteSpace(hit.Author)
                         ? hit.Description
                         : $"{hit.Author} — {hit.Description}",
@@ -337,13 +339,39 @@ public partial class MainWindow : Window
             summary = "Русское описание пока недоступно. Откройте страницу Minecraft Wiki.";
         }
 
+        string? imageUrl = Uri.TryCreate(new Uri("https://launchercontent.mojang.com/"), note.Image?.Url, out var imageUri) && imageUri.Scheme == "https" ? imageUri.AbsoluteUri : null;
         return new MinecraftUpdateItem
         {
             Title = NormalizeMinecraftTitle(note),
+            ImageUrl = imageUrl,
+            ThumbnailPath = await CacheNewsImageAsync(imageUrl),
             DateText = FormatMinecraftDate(note.Date),
             Summary = summary,
             Url = wikiUrl
         };
+    }
+
+
+    private static async Task<string?> CacheNewsImageAsync(string? url)
+    {
+        if (!Uri.TryCreate(url, UriKind.Absolute, out var uri) || uri.Scheme != "https") return null;
+        try
+        {
+            string directory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "TealLauncher", "news-images");
+            Directory.CreateDirectory(directory);
+            string name = Convert.ToHexString(System.Security.Cryptography.SHA256.HashData(System.Text.Encoding.UTF8.GetBytes(url!)));
+            string path = Path.Combine(directory, name + ".jpg");
+            if (File.Exists(path)) return path;
+            using var timeout = new CancellationTokenSource(TimeSpan.FromSeconds(15));
+            byte[] bytes = await Http.GetByteArrayAsync(uri, timeout.Token);
+            using (var data = new MemoryStream(bytes))
+                System.Windows.Media.Imaging.BitmapFrame.Create(data, System.Windows.Media.Imaging.BitmapCreateOptions.None, System.Windows.Media.Imaging.BitmapCacheOption.OnLoad);
+            string temporary = path + "." + Guid.NewGuid().ToString("N") + ".tmp";
+            try { await File.WriteAllBytesAsync(temporary, bytes, timeout.Token); File.Move(temporary, path, true); }
+            finally { if (File.Exists(temporary)) File.Delete(temporary); }
+            return path;
+        }
+        catch { return null; }
     }
 
     private static string NormalizeMinecraftTitle(MojangPatchNote note)
@@ -402,6 +430,7 @@ public partial class MainWindow : Window
                 return false;
             }
 
+            await Task.WhenAll(cache.Items.Select(async item => item.ThumbnailPath = await CacheNewsImageAsync(item.ImageUrl)));
             ReplaceMinecraftUpdates(cache.Items);
             return true;
         }
@@ -1169,6 +1198,7 @@ public partial class MainWindow : Window
     {
         SettingsOverlay.Visibility = Visibility.Collapsed;
         ModsOverlay.Visibility = Visibility.Visible;
+        UpdateModsTabStyles();
 
         await LoadInstancesAsync();
         UpdateProjectStates();
@@ -1205,12 +1235,8 @@ public partial class MainWindow : Window
 
     private static void SetModsTabStyle(Button button, bool active)
     {
-        button.Background = active
-            ? System.Windows.Media.Brushes.WhiteSmoke
-            : new System.Windows.Media.SolidColorBrush(System.Windows.Media.Color.FromRgb(30, 136, 199));
-        button.Foreground = active
-            ? new System.Windows.Media.SolidColorBrush(System.Windows.Media.Color.FromRgb(30, 136, 199))
-            : System.Windows.Media.Brushes.White;
+        button.SetResourceReference(BackgroundProperty, active ? "PanelTabActive" : "PanelTabInactive");
+        button.SetResourceReference(ForegroundProperty, active ? "PanelTabActiveInk" : "OnGlass");
     }
 
     private async void ModsSortComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -1747,6 +1773,8 @@ public partial class MainWindow : Window
 
 public sealed class PopularModpackItem
 {
+    public string Description { get; init; } = "";
+    public string? IconUrl { get; init; }
     public string Title { get; init; } = string.Empty;
     public string Details { get; init; } = string.Empty;
     public string DownloadsText { get; init; } = string.Empty;
@@ -1761,6 +1789,8 @@ public sealed class ModrinthSearchResponse
 
 public sealed class ModrinthSearchHit
 {
+    [JsonPropertyName("icon_url")]
+    public string? IconUrl { get; init; }
     [JsonPropertyName("project_id")]
     public string ProjectId { get; init; } = string.Empty;
 
@@ -1966,6 +1996,8 @@ public sealed class ModrinthVersion
 
 public sealed class MinecraftUpdateItem
 {
+    public string? ImageUrl { get; init; }
+    public string? ThumbnailPath { get; set; }
     public string Title { get; init; } = string.Empty;
     public string DateText { get; init; } = string.Empty;
     public string Summary { get; init; } = string.Empty;
@@ -1986,6 +2018,8 @@ public sealed class MojangPatchNotesResponse
 
 public sealed class MojangPatchNote
 {
+    [JsonPropertyName("image")]
+    public MojangNewsImage? Image { get; init; }
     [JsonPropertyName("title")]
     public string Title { get; init; } = string.Empty;
 
@@ -1997,6 +2031,12 @@ public sealed class MojangPatchNote
 
     [JsonPropertyName("date")]
     public DateTimeOffset Date { get; init; }
+}
+
+public sealed class MojangNewsImage
+{
+    [JsonPropertyName("url")]
+    public string? Url { get; init; }
 }
 
 public sealed class WikiExtractResponse

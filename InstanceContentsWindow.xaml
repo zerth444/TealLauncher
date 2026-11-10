@@ -7,7 +7,7 @@
         Height="600"
         WindowStartupLocation="CenterOwner"
         ResizeMode="CanResize"
-        Background="#F5F5F5">
+        Background="{DynamicResource Brush.F5F5F5}" FontFamily="{DynamicResource Font.Ui}">
     <Grid Margin="16">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -17,10 +17,10 @@
 
         <TextBlock x:Name="TitleText"
                    Text="Содержимое инстанса"
-                   FontFamily="Arial"
+                   FontFamily="{DynamicResource Font.Arial}"
                    FontSize="18"
                    FontWeight="Bold"
-                   Foreground="#1E88C7"/>
+                   Foreground="{DynamicResource Brush.1E88C7}"/>
 
         <ScrollViewer Grid.Row="1"
                       VerticalScrollBarVisibility="Auto"
@@ -38,10 +38,10 @@
                 Width="100"
                 Height="30"
                 HorizontalAlignment="Right"
-                Background="#408AD2"
-                Foreground="#FFFFFF"
+                Background="{DynamicResource Brush.408AD2}"
+                Foreground="{DynamicResource Brush.FFFFFF}"
                 BorderThickness="0"
-                FontFamily="Arial"
+                FontFamily="{DynamicResource Font.Arial}"
                 FontSize="11"
                 Cursor="Hand"
                 Click="CloseButton_Click"/>

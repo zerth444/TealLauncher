@@ -4,7 +4,7 @@
         Icon="pack://application:,,,/TLauncherRemake;component/Assets/launcher.ico"
         Title="Новая сборка" Width="560" SizeToContent="Height"
         MinWidth="520" ResizeMode="NoResize" WindowStartupLocation="CenterOwner"
-        Background="#F5F5F5" FontFamily="Segoe UI" FontSize="13">
+        Background="{DynamicResource PanelDialog}" Foreground="{DynamicResource PanelText}" FontFamily="{DynamicResource Font.SegoeUI}" FontSize="13">
     <Grid Margin="24">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/><RowDefinition Height="Auto"/>
@@ -12,22 +12,22 @@
             <RowDefinition Height="Auto"/><RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <TextBlock Text="Новая сборка" FontSize="23" FontWeight="SemiBold" Foreground="#17638F"/>
-        <TextBlock Grid.Row="1" Text="Выберите Minecraft и загрузчик. Моды и ресурспаки можно добавить после создания." TextWrapping="Wrap" Foreground="#666666" Margin="0,8,0,22"/>
+        <TextBlock Text="Новая сборка" FontSize="23" FontWeight="SemiBold" Foreground="{DynamicResource PanelAccent}"/>
+        <TextBlock Grid.Row="1" Text="Выберите Minecraft и загрузчик. Моды и ресурспаки можно добавить после создания." TextWrapping="Wrap" Foreground="{DynamicResource PanelMuted}" Margin="0,8,0,22"/>
         <Grid Grid.Row="2" Margin="0,0,0,14">
             <Grid.ColumnDefinitions><ColumnDefinition Width="170"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
             <TextBlock Text="Название сборки" VerticalAlignment="Center"/>
-            <TextBox x:Name="InstanceNameTextBox" Grid.Column="1" Height="34" Padding="8,4" VerticalContentAlignment="Center" MaxLength="80"/>
+            <TextBox Style="{DynamicResource SettingsTextBoxStyle}" Background="{DynamicResource PanelInput}" Foreground="{DynamicResource PanelText}" x:Name="InstanceNameTextBox" Grid.Column="1" Height="34" Padding="8,4" VerticalContentAlignment="Center" MaxLength="80"/>
         </Grid>
         <Grid Grid.Row="3" Margin="0,0,0,14">
             <Grid.ColumnDefinitions><ColumnDefinition Width="170"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
             <TextBlock Text="Версия Minecraft" VerticalAlignment="Center"/>
-            <ComboBox x:Name="VersionComboBox" Grid.Column="1" Height="34" Padding="8,4" IsTextSearchEnabled="True"/>
+            <ComboBox Style="{DynamicResource PanelComboStyle}" x:Name="VersionComboBox" Grid.Column="1" Height="34" Padding="8,4" IsTextSearchEnabled="True"/>
         </Grid>
         <Grid Grid.Row="4" Margin="0,0,0,14">
             <Grid.ColumnDefinitions><ColumnDefinition Width="170"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
             <TextBlock Text="Загрузчик модов" VerticalAlignment="Center"/>
-            <ComboBox x:Name="LoaderComboBox" Grid.Column="1" Height="34" Padding="8,4" SelectionChanged="LoaderComboBox_SelectionChanged">
+            <ComboBox Style="{DynamicResource PanelComboStyle}" x:Name="LoaderComboBox" Grid.Column="1" Height="34" Padding="8,4" SelectionChanged="LoaderComboBox_SelectionChanged">
                 <ComboBoxItem Content="Fabric"/><ComboBoxItem Content="Forge"/><ComboBoxItem Content="NeoForge"/>
                 <ComboBoxItem Content="Quilt"/><ComboBoxItem Content="Vanilla"/>
             </ComboBox>
@@ -36,13 +36,13 @@
             <Grid>
                 <Grid.ColumnDefinitions><ColumnDefinition Width="170"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
                 <TextBlock Text="Версия загрузчика" VerticalAlignment="Center"/>
-                <ComboBox x:Name="LoaderVersionComboBox" Grid.Column="1" Height="34" Padding="8,4"/>
+                <ComboBox Style="{DynamicResource PanelComboStyle}" x:Name="LoaderVersionComboBox" Grid.Column="1" Height="34" Padding="8,4"/>
             </Grid>
-            <TextBlock x:Name="StatusText" TextWrapping="Wrap" Foreground="#555555" Margin="0,14,0,0" MinHeight="38" MaxWidth="510"/>
+            <TextBlock x:Name="StatusText" TextWrapping="Wrap" Foreground="{DynamicResource PanelMuted}" Margin="0,14,0,0" MinHeight="38" MaxWidth="510"/>
         </StackPanel>
         <StackPanel Grid.Row="6" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,14,0,0">
-            <Button x:Name="CreateButton" Content="Создать сборку" Padding="18,9" MinWidth="150" Background="#2782B6" Foreground="White" BorderThickness="0" IsDefault="True" Click="CreateButton_Click"/>
-            <Button Content="Отмена" Padding="18,9" MinWidth="100" Margin="10,0,0,0" IsCancel="True" Click="CancelButton_Click"/>
+            <Button Style="{DynamicResource SectionButtonStyle}" x:Name="CreateButton" Content="Создать сборку" Padding="18,9" MinWidth="150" Background="{DynamicResource SectionActionBrush}" Foreground="{DynamicResource Brush.White}" BorderThickness="0" IsDefault="True" Click="CreateButton_Click"/>
+            <Button Style="{DynamicResource SectionButtonStyle}" Background="{DynamicResource PanelSecondary}" Foreground="{DynamicResource PanelText}" Content="Отмена" Padding="18,9" MinWidth="100" Margin="10,0,0,0" IsCancel="True" Click="CancelButton_Click"/>
         </StackPanel>
     </Grid>
 </Window>

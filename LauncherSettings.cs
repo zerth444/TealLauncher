@@ -4,6 +4,7 @@ namespace TLauncherRemake;
 
 public sealed class LauncherSettings
 {
+    public bool LegacyDesign { get; set; }
     public string GameDirectory { get; set; } = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "TealLauncher", "minecraft");
     public int Width { get; set; } = 925;
     public int Height { get; set; } = 530;
