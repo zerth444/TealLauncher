@@ -1,0 +1,11 @@
+﻿About Teal Launcher
+
+Teal Launcher is an independent launcher for Minecraft: Java Edition. It is not affiliated with Mojang Studios or Microsoft and is not their official product.
+
+To play, you must have a Minecraft licence and sign in to your Microsoft account. Offline mode is intended for temporary play without an internet connection after signing in and does not replace a licence.
+
+When using the launcher, follow the Minecraft EULA (https://www.minecraft.net/eula) and Mojang's usage guidelines (https://www.minecraft.net/usage-guidelines).
+
+Mods, modpacks and other content belong to their authors. The launcher is provided as is: the operation of third-party content and services is not guaranteed. We recommend backing up worlds and important files.
+
+To the extent permitted by law, the developer is not responsible for problems arising from the use of the launcher and third-party content.

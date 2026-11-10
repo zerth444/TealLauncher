@@ -5,3 +5,5 @@ obj/
 Tests/work/
 Tests/bin-local/
 Tests/obj-local/
+
+installer/output/
