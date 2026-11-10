@@ -1,0 +1,49 @@
+<Window x:Class="TLauncherRemake.InstanceContentsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Icon="pack://application:,,,/TLauncherRemake;component/Assets/launcher.ico"
+        Title="Моды, ресурспаки и шейдеры"
+        Width="800" MinWidth="640"
+        Height="600"
+        WindowStartupLocation="CenterOwner"
+        ResizeMode="CanResize"
+        Background="#F5F5F5">
+    <Grid Margin="16">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock x:Name="TitleText"
+                   Text="Содержимое инстанса"
+                   FontFamily="Arial"
+                   FontSize="18"
+                   FontWeight="Bold"
+                   Foreground="#1E88C7"/>
+
+        <ScrollViewer Grid.Row="1"
+                      VerticalScrollBarVisibility="Auto"
+                      HorizontalScrollBarVisibility="Disabled"
+                      Margin="0,12,0,12">
+            <StackPanel x:Name="ContentsPanel"/>
+        </ScrollViewer>
+
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Left">
+            <Button Content="Папка сборки" Padding="12,6" Margin="0,0,8,0" Click="OpenFolder_Click"/>
+            <Button Content="Обновить список" Padding="12,6" Click="Refresh_Click"/>
+        </StackPanel>
+        <Button Content="Закрыть"
+                Grid.Row="2"
+                Width="100"
+                Height="30"
+                HorizontalAlignment="Right"
+                Background="#408AD2"
+                Foreground="#FFFFFF"
+                BorderThickness="0"
+                FontFamily="Arial"
+                FontSize="11"
+                Cursor="Hand"
+                Click="CloseButton_Click"/>
+    </Grid>
+</Window>

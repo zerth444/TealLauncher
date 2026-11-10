@@ -2,3 +2,6 @@ bin/
 obj/
 .vs/
 *.user
+Tests/work/
+Tests/bin-local/
+Tests/obj-local/
